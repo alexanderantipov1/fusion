@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Arch Dental Implants | Fusion Dental - Northern California</title>
+    <meta name="description" content="Transform your smile with dental implants from Fusion Dental. All-on-4, All-on-6, zygomatic implants with same-day results. Roseville, El Dorado Hills & San Francisco.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #1a5f7a;
+            --color-primary-dark: #134b61;
+            --color-primary-light: #2d7d9a;
+            --color-accent: #c9a227;
+            --color-accent-light: #e3be4f;
+            --color-cream: #faf8f5;
+            --color-warm-white: #fffefa;
+            --color-text: #2c3e50;
+            --color-text-light: #5a6c7d;
+            --color-border: #e8e4df;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+            --shadow-soft: 0 4px 20px rgba(26, 95, 122, 0.08);
+            --shadow-medium: 0 8px 40px rgba(26, 95, 122, 0.12);
+            --shadow-strong: 0 16px 60px rgba(26, 95, 122, 0.16);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-warm-white);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+        p { margin-bottom: 1rem; }
+
+        /* Layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 254, 250, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-soft);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-primary);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--color-text-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            padding: 10px 18px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background: var(--color-cream);
+            color: var(--color-primary);
+        }
+
+        .nav-cta {
+            background: var(--color-primary) !important;
+            color: white !important;
+            margin-left: 8px;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-primary-dark) !important;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(165deg, var(--color-cream) 0%, var(--color-warm-white) 50%, #f0f7fa 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(26, 95, 122, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--color-warm-white), transparent);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '★';
+            color: var(--color-accent);
+        }
+
+        .hero h1 {
+            color: var(--color-text);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 span {
+            color: var(--color-primary);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            max-width: 520px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(26, 95, 122, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(26, 95, 122, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            background: var(--color-cream);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.4s both;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4eaf0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-placeholder {
+            text-align: center;
+            color: var(--color-primary);
+        }
+
+        .hero-image-placeholder svg {
+            width: 120px;
+            height: 120px;
+            opacity: 0.5;
+        }
+
+        .hero-stats {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: white;
+            padding: 24px 32px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            gap: 32px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .floating-badge {
+            position: absolute;
+            top: 30px;
+            right: -20px;
+            background: var(--color-accent);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+            transform: rotate(3deg);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--color-primary);
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-bar-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .trust-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-accent);
+        }
+
+        /* Services */
+        .services {
+            background: var(--color-cream);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .section-header p {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--color-cream), #e8f4f8);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--color-primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .service-card p {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .service-price span {
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background: white;
+        }
+
+        .why-us-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .why-us-image {
+            position: relative;
+        }
+
+        .why-us-image-main {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .why-us-image-main img,
+        .why-us-image-main .placeholder {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4eaf0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 24px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .experience-badge-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .experience-badge-text {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .why-us-list {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .why-us-list li {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .why-us-check {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .why-us-check svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+
+        .why-us-list strong {
+            display: block;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .why-us-list span {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Locations */
+        .locations {
+            background: linear-gradient(165deg, var(--color-cream) 0%, #f0f7fa 100%);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .location-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .location-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .location-content {
+            padding: 32px;
+        }
+
+        .location-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .location-address {
+            color: var(--color-text-light);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .location-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .location-phone:hover {
+            color: var(--color-primary-dark);
+        }
+
+        .location-phone svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .location-hq {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Financing CTA */
+        .financing {
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .financing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .financing h2 {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .financing p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .financing-features {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .financing-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .financing-feature svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-accent);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--color-primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-light:hover {
+            background: var(--color-cream);
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--color-cream);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--color-primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin-bottom: 24px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .testimonial-procedure {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .testimonial-stars {
+            color: var(--color-accent);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--color-cream);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 32px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .faq-item h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .faq-item p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 16px;
+        }
+
+        .contact-info > p {
+            color: var(--color-text-light);
+            margin-bottom: 32px;
+        }
+
+        .contact-methods {
+            margin-bottom: 32px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-method-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-cream);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-method-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-primary);
+        }
+
+        .contact-method a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-method a:hover {
+            color: var(--color-primary-dark);
+        }
+
+        .contact-method span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .languages {
+            background: var(--color-cream);
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+        }
+
+        .languages h4 {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .languages p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--color-cream);
+            padding: 48px;
+            border-radius: var(--radius-lg);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 80px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .logo-icon {
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-hours {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-hours strong {
+            color: white;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .why-us-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .locations-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 16px;
+                box-shadow: var(--shadow-medium);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 60px;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-stats {
+                position: static;
+                margin-top: 24px;
+                justify-content: center;
+            }
+
+            .floating-badge {
+                position: static;
+                display: inline-block;
+                margin-top: 16px;
+                transform: none;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .trust-bar-inner {
+                gap: 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .financing-features {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand .logo {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    Fusion Dental
+                    <span>Full Arch Center</span>
+                </div>
+            </a>
+            <nav id="nav">
+                <a href="#services">Services</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#locations">Locations</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact" class="nav-cta">Free Consultation</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Northern California's Premier Implant Specialists</div>
+                    <h1>Transform Your Smile with <span>Same-Day Dental Implants</span></h1>
+                    <p class="hero-subtitle">Experience life-changing results with our expert team. From All-on-4 to zygomatic implants, we restore confident smiles with precision and care.</p>
+                    <div class="hero-ctas">
+                        <a href="tel:+19162929998" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            Call (916) 292-9998
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">Schedule Consultation</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image">
+                            <div class="hero-image-placeholder">
+                                <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                </svg>
+                                <p style="margin-top: 16px; font-size: 0.9rem;">Professional dental imagery</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">20K+</div>
+                            <div class="hero-stat-label">Procedures</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">17+</div>
+                            <div class="hero-stat-label">Years Experience</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">4.9</div>
+                            <div class="hero-stat-label">Star Rating</div>
+                        </div>
+                    </div>
+                    <div class="floating-badge">Same-Day Teeth!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-bar-inner">
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Free 3D CT Scan
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    0% Financing Available
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Lifetime Implant Warranty
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    In-House Lab
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Services</span>
+                <h2>Comprehensive Dental Implant Solutions</h2>
+                <p>From single tooth replacement to full arch restoration, we offer personalized solutions to meet your unique needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>All-on-4 Dental Implants</h3>
+                    <p>Complete arch restoration using just 4 strategically placed implants. Walk out with a brand new smile the same day.</p>
+                    <div class="service-price">From $14,995 <span>/ arch</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H9V5h6v2z"/></svg>
+                    </div>
+                    <h3>All-on-6 Dental Implants</h3>
+                    <p>Enhanced stability and support with 6 implants per arch. Ideal for patients seeking maximum durability.</p>
+                    <div class="service-price">From $18,995 <span>/ arch</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    </div>
+                    <h3>Single Tooth Implant</h3>
+                    <p>Natural-looking replacement for a missing tooth. Preserves surrounding teeth and maintains bone health.</p>
+                    <div class="service-price">From $3,495</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                    </div>
+                    <h3>Zygomatic Implants</h3>
+                    <p>Advanced solution for patients with severe bone loss. Anchored to the cheekbone for secure, lasting results.</p>
+                    <div class="service-price">From $29,995 <span>/ arch</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h3>Snap-On Dentures</h3>
+                    <p>Removable implant-supported dentures that snap securely onto implants. Easy to clean and maintain.</p>
+                    <div class="service-price">From $8,995 <span>/ arch</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="why-us-content">
+                <div class="why-us-image">
+                    <div class="why-us-image-main">
+                        <div class="placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="80" height="80" opacity="0.3">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <p style="margin-top: 16px; font-size: 0.9rem; opacity: 0.6;">Expert dental team</p>
+                        </div>
+                    </div>
+                    <div class="experience-badge">
+                        <div class="experience-badge-number">17+</div>
+                        <div class="experience-badge-text">Years of Excellence</div>
+                    </div>
+                </div>
+                <div class="why-us-text">
+                    <span class="section-label">Why Choose Us</span>
+                    <h2>Northern California's Most Trusted Implant Specialists</h2>
+                    <p>With over 20,000 successful procedures, our specialized team delivers exceptional results using the latest technology and techniques.</p>
+                    <ul class="why-us-list">
+                        <li>
+                            <div class="why-us-check">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div>
+                                <strong>Same-Day Results</strong>
+                                <span>Walk in with missing teeth, walk out with a brand new smile.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-us-check">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div>
+                                <strong>In-House Dental Laboratory</strong>
+                                <span>Custom prosthetics crafted on-site for perfect fit and faster turnaround.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-us-check">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div>
+                                <strong>Advanced 3D Imaging</strong>
+                                <span>State-of-the-art CT scans for precise treatment planning.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-us-check">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div>
+                                <strong>Lifetime Warranty</strong>
+                                <span>We stand behind our work with comprehensive implant warranty.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-us-check">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div>
+                                <strong>Multilingual Staff</strong>
+                                <span>We speak English, Spanish, Chinese, Vietnamese, Korean & Tagalog.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations -->
+    <section class="locations" id="locations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Locations</span>
+                <h2>Three Convenient Locations to Serve You</h2>
+                <p>Visit us in Roseville, El Dorado Hills, or San Francisco for your free consultation.</p>
+            </div>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-image">🏛️</div>
+                    <div class="location-content">
+                        <h3>Roseville <span class="location-hq">Headquarters</span></h3>
+                        <p class="location-address">911 Reserve Dr, Ste 150<br>Roseville, CA 95678</p>
+                        <a href="tel:+19162929998" class="location-phone">
+                            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            (916) 292-9998
+                        </a>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-image">🌳</div>
+                    <div class="location-content">
+                        <h3>El Dorado Hills</h3>
+                        <p class="location-address">4913 Golden Foothill Pkwy<br>El Dorado Hills, CA 95762</p>
+                        <a href="tel:+19162929998" class="location-phone">
+                            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            (916) 292-9998
+                        </a>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <div class="location-image">🌉</div>
+                    <div class="location-content">
+                        <h3>San Francisco</h3>
+                        <p class="location-address">490 Post St, Suite 1022<br>San Francisco, CA 94102</p>
+                        <a href="tel:+14158910990" class="location-phone">
+                            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            (415) 891-0990
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing CTA -->
+    <section class="financing">
+        <div class="container">
+            <h2>Affordable Financing Options</h2>
+            <p>Don't let cost stand in the way of your dream smile. We offer flexible payment plans to fit your budget.</p>
+            <div class="financing-features">
+                <div class="financing-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    0% Interest Available
+                </div>
+                <div class="financing-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    $0 Down Payment
+                </div>
+                <div class="financing-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Quick Pre-Approval
+                </div>
+            </div>
+            <a href="#contact" class="btn btn-light">Check Your Financing Options</a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Patient Stories</span>
+                <h2>Life-Changing Results</h2>
+                <p>Hear from patients who have transformed their smiles and their lives.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">I can't believe I waited so long. The All-on-4 procedure changed my life. I'm smiling again for the first time in years!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MJ</div>
+                        <div>
+                            <div class="testimonial-name">Maria J.</div>
+                            <div class="testimonial-procedure">All-on-4 Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">The team made me feel so comfortable. Same-day teeth seemed impossible, but they delivered. Absolutely amazing experience.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RK</div>
+                        <div>
+                            <div class="testimonial-name">Robert K.</div>
+                            <div class="testimonial-procedure">All-on-6 Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">After being told I didn't have enough bone, Fusion Dental gave me hope with zygomatic implants. Forever grateful!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LT</div>
+                        <div>
+                            <div class="testimonial-name">Linda T.</div>
+                            <div class="testimonial-procedure">Zygomatic Patient</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about dental implants.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What are All-on-4 dental implants?</h4>
+                    <p>All-on-4 is a revolutionary technique that uses just four dental implants to support a full arch of teeth. It's designed for patients who need full-arch restoration and can often be completed in a single day.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Am I a candidate for dental implants?</h4>
+                    <p>Most adults with missing teeth are candidates. During your free consultation, we'll perform a 3D CT scan to evaluate your bone structure and create a personalized treatment plan.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How long do dental implants last?</h4>
+                    <p>With proper care, dental implants can last a lifetime. We back our implants with a lifetime warranty for your peace of mind.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is the procedure painful?</h4>
+                    <p>We use advanced sedation techniques to ensure your comfort. Most patients report minimal discomfort and are pleasantly surprised by how easy the recovery is.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I have severe bone loss?</h4>
+                    <p>We specialize in complex cases. Our zygomatic implants are designed specifically for patients with severe bone loss who have been told they're not candidates elsewhere.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How much do dental implants cost?</h4>
+                    <p>Costs vary based on your specific needs. We offer free consultations and flexible financing with 0% interest options to make treatment accessible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <span class="section-label">Get Started</span>
+                    <h2>Schedule Your Free Consultation</h2>
+                    <p>Take the first step toward your new smile. Our team is ready to answer your questions and create your personalized treatment plan.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            </div>
+                            <div>
+                                <a href="tel:+19162929998">(916) 292-9998</a>
+                                <span>Roseville & El Dorado Hills</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            </div>
+                            <div>
+                                <a href="tel:+14158910990">(415) 891-0990</a>
+                                <span>San Francisco</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="languages">
+                        <h4>We Speak Your Language</h4>
+                        <p>English • Spanish • Chinese • Vietnamese • Korean • Tagalog</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Request an Appointment</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="all-on-4">All-on-4 Dental Implants</option>
+                                <option value="all-on-6">All-on-6 Dental Implants</option>
+                                <option value="single">Single Tooth Implant</option>
+                                <option value="zygomatic">Zygomatic Implants</option>
+                                <option value="snap-on">Snap-On Dentures</option>
+                                <option value="other">Not Sure / Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Preferred Location</label>
+                            <select id="location" name="location">
+                                <option value="">Select a location</option>
+                                <option value="roseville">Roseville</option>
+                                <option value="eldorado">El Dorado Hills</option>
+                                <option value="sf">San Francisco</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your dental goals..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Request Free Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            Fusion Dental
+                            <span>Full Arch Center</span>
+                        </div>
+                    </a>
+                    <p>Northern California's premier dental implant specialists. Transforming smiles with expert care and cutting-edge technology since 2008.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">All-on-4 Implants</a></li>
+                        <li><a href="#services">All-on-6 Implants</a></li>
+                        <li><a href="#services">Single Tooth Implants</a></li>
+                        <li><a href="#services">Zygomatic Implants</a></li>
+                        <li><a href="#services">Snap-On Dentures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Locations</h4>
+                    <ul>
+                        <li><a href="#locations">Roseville</a></li>
+                        <li><a href="#locations">El Dorado Hills</a></li>
+                        <li><a href="#locations">San Francisco</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Hours</h4>
+                    <div class="footer-hours">
+                        <strong>Monday - Friday</strong>
+                        8:00 AM - 5:00 PM
+                    </div>
+                    <div class="footer-hours" style="margin-top: 12px;">
+                        <strong>Saturday</strong>
+                        By Appointment
+                    </div>
+                    <div class="footer-hours" style="margin-top: 12px;">
+                        <strong>Sunday</strong>
+                        Closed
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fusion Dental Implants. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('nav').classList.toggle('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('nav').classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly to schedule your free consultation.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
