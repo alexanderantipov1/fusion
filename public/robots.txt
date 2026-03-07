@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.fremontcomprehensivedentistry.com/sitemap.xml
+
+# Dr. Yvonne Chen DMD - Fremont Comprehensive Family Dentistry
+# 1895 Mowry Ave, Ste 102, Fremont, CA 94538
+# (510) 795-1661
+# Powered by Fusion Dental Implants™
