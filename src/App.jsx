@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 // ============================================================
@@ -3747,6 +3748,9 @@ export default function DrYvonneChenDental() {
 
       {/* TRUST BAR — Social Proof Notifications */}
       {page === "home" && !showChat && <TrustBar />}
+
+      {/* VERCEL SPEED INSIGHTS */}
+      <SpeedInsights />
     </div>
   );
 }
