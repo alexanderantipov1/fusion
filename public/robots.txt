@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.fremontcomprehensivedentistry.com/sitemap.xml
+Sitemap: https://www.galleriaoralsurgery.com/sitemap.xml
 
-# Dr. Yvonne Chen DMD - Fremont Comprehensive Family Dentistry
-# 1895 Mowry Ave, Ste 102, Fremont, CA 94538
-# (510) 795-1661
-# Powered by Fusion Dental Implants™
+# Galleria Oral Surgery - Dr. Alexander Antipov DDS
+# Oral & Maxillofacial Surgery and Dental Implants
+# 1197 Roseville Pkwy, Suite 100, Roseville, CA 95678
+# (916) 555-0100
+# Powered by Fusion Dental Implants
