@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.galleriaoralsurgery.com/sitemap.xml
+
+# Galleria Oral Surgery - Dr. Alexander Antipov DDS
+# Oral & Maxillofacial Surgery and Dental Implants
+# 1197 Roseville Pkwy, Suite 100, Roseville, CA 95678
+# (916) 555-0100
+# Powered by Fusion Dental Implants

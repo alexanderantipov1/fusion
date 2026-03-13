@@ -1,7 +1,7 @@
 {
-  "name": "dr-yvonne-chen-dental-website",
+  "name": "galleria-oral-surgery",
   "version": "1.0.0",
-  "description": "Dr. Yvonne Chen DMD - Fremont Comprehensive Family Dentistry - Powered by Fusion Dental Implants",
+  "description": "Galleria Oral Surgery - Dr. Alexander Antipov DDS - Oral & Maxillofacial Surgery and Dental Implants - Roseville CA",
   "private": true,
   "scripts": {
     "dev": "vite",
