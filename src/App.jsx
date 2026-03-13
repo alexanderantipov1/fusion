@@ -341,7 +341,7 @@ export default function App() {
               <li key={l.id}><a onClick={() => scrollTo(l.id)}>{l.label}</a></li>
             ))}
           </ul>
-          <a href="tel:9165550100" className="gos-nav-phone">(916) 555-0100</a>
+          <a href="tel:9167832110" className="gos-nav-phone">(916) 783-2110</a>
           <button className="gos-hamburger" onClick={() => setMobileMenuOpen(true)} aria-label="Open menu">
             <span /><span /><span />
           </button>
@@ -354,7 +354,7 @@ export default function App() {
         {navLinks.map((l) => (
           <a key={l.id} onClick={() => scrollTo(l.id)}>{l.label}</a>
         ))}
-        <a href="tel:9165550100" style={{ color: "#C9A96E", fontFamily: "Inter, sans-serif", fontWeight: 700 }}>(916) 555-0100</a>
+        <a href="tel:9167832110" style={{ color: "#C9A96E", fontFamily: "Inter, sans-serif", fontWeight: 700 }}>(916) 783-2110</a>
       </div>
 
       {/* HERO */}
@@ -874,20 +874,20 @@ export default function App() {
               <div className="gos-location-detail">
                 <div>
                   <strong>Address</strong><br />
-                  1197 Roseville Pkwy, Suite 100<br />
+                  911 Reserve Drive, Suite 150<br />
                   Roseville, CA 95678
                 </div>
               </div>
               <div className="gos-location-detail">
                 <div>
                   <strong>Phone</strong><br />
-                  <a href="tel:9165550100" style={{ color: "#C9A96E", textDecoration: "none" }}>(916) 555-0100</a>
+                  <a href="tel:9167832110" style={{ color: "#C9A96E", textDecoration: "none" }}>(916) 783-2110</a>
                 </div>
               </div>
               <div className="gos-location-detail">
                 <div>
                   <strong>Email</strong><br />
-                  <a href="mailto:info@galleriaoralsurgery.com" style={{ color: "#C9A96E", textDecoration: "none" }}>info@galleriaoralsurgery.com</a>
+                  <a href="mailto:info@galleriaoms.com" style={{ color: "#C9A96E", textDecoration: "none" }}>info@galleriaoms.com</a>
                 </div>
               </div>
               <h4 style={{ fontSize: 16, marginTop: 24, marginBottom: 8 }}>Office Hours</h4>
@@ -915,8 +915,8 @@ export default function App() {
               <div>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>&#128205;</div>
                 <h3 style={{ color: "#fff", marginBottom: 8, fontSize: 20 }}>Galleria Oral Surgery</h3>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14 }}>1197 Roseville Pkwy, Suite 100<br />Roseville, CA 95678</p>
-                <a href="https://maps.google.com/?q=1197+Roseville+Pkwy+Suite+100+Roseville+CA+95678" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, background: "#C9A96E", color: "#0B1D3A", padding: "10px 24px", borderRadius: 4, fontWeight: 700, fontSize: 13, textDecoration: "none" }}>Get Directions</a>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14 }}>911 Reserve Drive, Suite 150<br />Roseville, CA 95678</p>
+                <a href="https://maps.google.com/?q=911+Reserve+Drive+Suite+150+Roseville+CA+95678" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, background: "#C9A96E", color: "#0B1D3A", padding: "10px 24px", borderRadius: 4, fontWeight: 700, fontSize: 13, textDecoration: "none" }}>Get Directions</a>
               </div>
             </div>
           </div>
@@ -930,10 +930,10 @@ export default function App() {
             <h4 style={{ color: "#C9A96E", fontFamily: "'Playfair Display', serif", fontSize: 18, letterSpacing: 1, marginBottom: 16 }}>Galleria Oral Surgery</h4>
             <p style={{ marginBottom: 8 }}>Dr. Alexander Antipov, DDS</p>
             <p style={{ marginBottom: 8 }}>Oral &amp; Maxillofacial Surgery</p>
-            <p style={{ marginBottom: 8 }}>1197 Roseville Pkwy, Suite 100</p>
+            <p style={{ marginBottom: 8 }}>911 Reserve Drive, Suite 150</p>
             <p style={{ marginBottom: 8 }}>Roseville, CA 95678</p>
-            <p style={{ marginBottom: 8 }}>(916) 555-0100</p>
-            <p>info@galleriaoralsurgery.com</p>
+            <p style={{ marginBottom: 8 }}>(916) 783-2110</p>
+            <p>info@galleriaoms.com</p>
           </div>
           <div>
             <h4>Quick Links</h4>
@@ -960,8 +960,8 @@ export default function App() {
           <div>
             <h4>Contact</h4>
             <ul>
-              <li><a href="tel:9165550100">(916) 555-0100</a></li>
-              <li><a href="mailto:info@galleriaoralsurgery.com">Email Us</a></li>
+              <li><a href="tel:9167832110">(916) 783-2110</a></li>
+              <li><a href="mailto:info@galleriaoms.com">Email Us</a></li>
               <li><a onClick={() => scrollTo("location")} style={{ cursor: "pointer" }}>Directions</a></li>
               <li><a onClick={() => scrollTo("referrals")} style={{ cursor: "pointer" }}>Send Referral</a></li>
             </ul>
