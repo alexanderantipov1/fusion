@@ -1,366 +1,397 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { PRACTICE, CITIES_SERVED, SERVICES, TESTIMONIALS, FAQS, REFERRAL_REASONS, SYMPTOM_CATEGORIES, SYMPTOM_RECOMMENDATIONS, IMPLANT_PRICING, KNOWLEDGE_BASE, STYLES } from "./data.js";
 
-// ============================================================
-// GALLERIA ORAL SURGERY - DR. ALEXANDER ANTIPOV, DDS
-// Oral & Maxillofacial Surgery | Dental Implants | Roseville, CA
-// Powered by Fusion Dental Implants
-// ============================================================
-
-const PRACTICE = {
-  name: "Galleria Oral Surgery",
-  doctor: "Dr. Alexander Antipov, DDS",
-  specialty: "Oral & Maxillofacial Surgery",
-  phone: "(916) 555-0100",
-  email: "info@galleriaoralsurgery.com",
-  address: "1197 Roseville Pkwy, Suite 100, Roseville, CA 95678",
-  hours: "Mon\u2013Thu: 8AM\u20135PM | Fri: 8AM\u20132PM",
-};
-
-const CITIES_SERVED = [
-  "Roseville","Rocklin","Lincoln","Granite Bay","Citrus Heights","Folsom",
-  "Sacramento","Auburn","Loomis","El Dorado Hills","Carmichael","Fair Oaks",
-  "Orangevale","Rancho Cordova","West Sacramento","Davis","Woodland",
-  "Elk Grove","Natomas","Antelope","North Highlands","Rio Linda",
-];
-
-const SERVICES = [
-  { icon: "\u2726", title: "Dental Implants", desc: "Single tooth, multiple teeth, and full arch implant placement with 3D-guided surgery for precise, lasting results." },
-  { icon: "\u2726", title: "Wisdom Teeth Removal", desc: "Safe, comfortable extraction of impacted and erupted wisdom teeth with IV sedation options for anxiety-free care." },
-  { icon: "\u2726", title: "All-on-4 Full Arch Implants", desc: "Complete smile restoration in as little as one day using four strategically placed implants to support a full arch of teeth." },
-  { icon: "\u2726", title: "Bone Grafting & Sinus Lifts", desc: "Advanced bone augmentation procedures to rebuild jawbone volume and prepare the foundation for successful dental implants." },
-  { icon: "\u2726", title: "Corrective Jaw Surgery", desc: "Orthognathic surgery to correct jaw misalignment, improve bite function, facial aesthetics, and airway conditions." },
-  { icon: "\u2726", title: "Tooth Extractions", desc: "Simple and surgical extractions performed with precision and comfort, including impacted and broken teeth." },
-  { icon: "\u2726", title: "Facial Trauma & Fracture Repair", desc: "Emergency treatment of facial injuries including fractured jaws, cheekbones, orbital bones, and soft tissue lacerations." },
-  { icon: "\u2726", title: "TMJ / TMD Treatment", desc: "Comprehensive diagnosis and treatment of temporomandibular joint disorders including arthroscopy and joint replacement." },
-  { icon: "\u2726", title: "Oral Pathology & Biopsy", desc: "Evaluation and biopsy of oral lesions, cysts, tumors, and abnormal tissue for accurate diagnosis and treatment planning." },
-  { icon: "\u2726", title: "Pre-Prosthetic Surgery", desc: "Surgical preparation of the mouth for dentures or prosthetics, including bone smoothing and soft tissue recontouring." },
-  { icon: "\u2726", title: "Platelet-Rich Fibrin (PRF)", desc: "Biologic therapy using your own blood concentrates to accelerate healing and improve surgical outcomes." },
-  { icon: "\u2726", title: "IV Sedation & Anesthesia", desc: "Full spectrum anesthesia services from local anesthesia to IV sedation and general anesthesia for patient comfort." },
-  { icon: "\u2726", title: "Apicoectomy", desc: "Root-end surgery to remove infected tissue and seal the root tip when conventional root canal treatment is insufficient." },
-  { icon: "\u2726", title: "Expose & Bond", desc: "Surgical exposure of impacted canines and other teeth combined with orthodontic bonding to guide eruption into proper alignment." },
-  { icon: "\u2726", title: "Frenectomy", desc: "Release of restrictive frenum tissue (tongue-tie or lip-tie) to improve function, speech, and oral development." },
-  { icon: "\u2726", title: "Cleft Lip & Palate", desc: "Surgical management of cleft conditions including bone grafting and reconstructive procedures as part of multidisciplinary care." },
-];
-
-const TESTIMONIALS = [
-  { name: "Sarah M.", text: "Dr. Antipov made my dental implant experience completely painless. His expertise and the caring staff at Galleria Oral Surgery made all the difference. I now have a beautiful, confident smile!", rating: 5 },
-  { name: "James R.", text: "I was terrified of getting my wisdom teeth out, but Dr. Antipov and his team put me at ease from the moment I walked in. The IV sedation was seamless and recovery was faster than expected.", rating: 5 },
-  { name: "Linda K.", text: "After years of struggling with loose dentures, Dr. Antipov gave me All-on-4 implants. It was truly life-changing. I can eat, laugh, and smile with complete confidence again.", rating: 5 },
-  { name: "Dr. Michael Torres, DDS", text: "As a referring dentist, I consistently send my patients to Dr. Antipov for oral surgery. His communication is excellent, outcomes are outstanding, and my patients always return with praise.", rating: 5 },
-];
-
-const FAQS = [
-  { q: "Do I need a referral to see Dr. Antipov?", a: "While many patients are referred by their general dentist or orthodontist, a referral is not required. You are welcome to contact our office directly to schedule a consultation for any oral surgery needs." },
-  { q: "What types of sedation do you offer?", a: "We offer the full spectrum of anesthesia options including local anesthesia, nitrous oxide (laughing gas), intravenous (IV) conscious sedation, and general anesthesia. Dr. Antipov will recommend the best option based on your procedure and comfort level." },
-  { q: "How long does dental implant surgery take?", a: "A single dental implant placement typically takes 30\u201360 minutes. More complex procedures like All-on-4 full arch implants may take 2\u20134 hours. During your consultation, Dr. Antipov will provide a detailed timeline for your specific treatment plan." },
-  { q: "What is the recovery time after wisdom teeth removal?", a: "Most patients return to normal activities within 3\u20135 days. Complete healing of the extraction sites takes about 2 weeks. We provide detailed post-operative instructions and are available 24/7 for any concerns during your recovery." },
-  { q: "Do you accept dental insurance?", a: "Yes, we accept most major dental and medical insurance plans. Our team will verify your benefits and provide a detailed cost estimate before any procedure. We also offer financing through CareCredit and in-office payment plans." },
-  { q: "How long do dental implants last?", a: "With proper care and maintenance, dental implants can last a lifetime. The implant itself is made of biocompatible titanium that fuses permanently with your jawbone. The implant crown may need replacement after 15\u201320 years due to normal wear." },
-  { q: "What is the cost of All-on-4 dental implants?", a: "The cost of All-on-4 treatment varies based on individual needs, materials selected, and whether additional procedures are required. We offer complimentary implant consultations with detailed cost breakdowns and flexible financing options to make treatment accessible." },
-  { q: "Is oral surgery painful?", a: "Modern oral surgery techniques and anesthesia ensure your comfort throughout every procedure. Most patients report that the actual procedure was much easier than anticipated. Post-operative discomfort is well-managed with prescribed medications and typically resolves within a few days." },
-  { q: "What should I do in a dental emergency?", a: "If you experience a dental emergency such as a knocked-out tooth, jaw fracture, or severe oral bleeding, call our office immediately at (916) 555-0100. We accommodate emergency cases and provide after-hours emergency contact information on our voicemail." },
-  { q: "How do referring doctors send patient referrals?", a: "Referring doctors can submit referrals through our convenient online referral form on this website, by fax, or by calling our office directly. We provide prompt communication back to referring offices including treatment plans and post-operative reports." },
-];
-
-const REFERRAL_REASONS = [
-  "Dental Implants", "Wisdom Teeth Extraction", "Tooth Extraction",
-  "Bone Grafting / Sinus Lift", "Corrective Jaw Surgery", "Oral Pathology / Biopsy",
-  "TMJ Treatment", "Facial Trauma", "Expose & Bond", "Pre-Prosthetic Surgery",
-  "Apicoectomy", "Frenectomy", "Other",
-];
-
-/* ========== CSS ========== */
-const STYLES = String.raw`
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0B1D3A;--navy-light:#132d54;--gold:#C9A96E;--gold-light:#d4ba8a;
-  --white:#fff;--gray-50:#F8F9FA;--gray-100:#f0f1f3;--gray-200:#e2e4e8;
-  --gray-400:#9ca3af;--gray-600:#4b5563;--gray-800:#1f2937;
-  --font-heading:'Playfair Display',Georgia,serif;
-  --font-body:'Inter',system-ui,-apple-system,sans-serif;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 20px rgba(0,0,0,.1);
-  --shadow-lg:0 10px 40px rgba(0,0,0,.15);--radius:12px;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s}
-.nav.scrolled{background:rgba(11,29,58,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.2)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1400px;margin:0 auto}
-.nav-logo{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
-.nav-logo span{display:block;font-size:.65rem;color:rgba(255,255,255,.6);letter-spacing:3px;font-family:var(--font-body);font-weight:400;margin-top:2px}
-.nav-links{display:flex;gap:28px;align-items:center;list-style:none}
-.nav-links a{color:rgba(255,255,255,.85);font-size:.82rem;font-weight:500;letter-spacing:.5px;transition:color .2s;text-transform:uppercase}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:6px;font-weight:600;font-size:.82rem;letter-spacing:.5px;transition:all .2s;border:none;cursor:pointer}
-.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:24px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--white);font-size:1.2rem;font-weight:500;letter-spacing:1px;text-transform:uppercase}
-.mobile-menu a:hover{color:var(--gold)}
-.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy) 0%,#1a3a6b 50%,#0d2440 100%);position:relative;overflow:hidden;padding:120px 24px 80px}
-.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(ellipse,rgba(201,169,110,.08) 0%,transparent 70%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--white),transparent)}
-.hero-content{text-align:center;max-width:900px;position:relative;z-index:2}
-.hero-badge{display:inline-block;background:rgba(201,169,110,.15);color:var(--gold);padding:8px 20px;border-radius:30px;font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;border:1px solid rgba(201,169,110,.25)}
-.hero h1{font-family:var(--font-heading);font-size:clamp(2.4rem,5vw,4.2rem);color:var(--white);line-height:1.15;margin-bottom:20px;font-weight:700}
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero p{font-size:clamp(1rem,1.8vw,1.2rem);color:rgba(255,255,255,.7);max-width:700px;margin:0 auto 36px;line-height:1.7}
-.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.btn-primary{background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:8px;font-weight:700;font-size:.9rem;letter-spacing:.5px;transition:all .25s;border:none;cursor:pointer;text-transform:uppercase}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,169,110,.35)}
-.btn-secondary{background:transparent;color:var(--white);padding:14px 32px;border-radius:8px;font-weight:600;font-size:.9rem;letter-spacing:.5px;transition:all .25s;border:2px solid rgba(255,255,255,.3);cursor:pointer;text-transform:uppercase}
-.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.trust-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.trust-item{display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.6);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:1px}
-.trust-icon{width:48px;height:48px;border-radius:50%;background:rgba(201,169,110,.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--gold);border:1px solid rgba(201,169,110,.2)}
-
-/* SECTIONS */
-.section{padding:100px 24px}
-.section-header{text-align:center;max-width:700px;margin:0 auto 60px}
-.section-badge{display:inline-block;color:var(--gold);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
-.section-title{font-family:var(--font-heading);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--navy);line-height:1.2;margin-bottom:16px}
-.section-subtitle{color:var(--gray-600);font-size:1.05rem;line-height:1.7}
-.section-dark{background:var(--navy);color:var(--white)}
-.section-gray{background:var(--gray-50)}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto}
-.about-image{background:linear-gradient(135deg,var(--navy),#1a3a6b);border-radius:var(--radius);height:500px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.about-image-placeholder{color:var(--gold);font-size:5rem;opacity:.3;font-family:var(--font-heading)}
-.about-image .credential-float{position:absolute;background:var(--white);padding:16px 20px;border-radius:10px;box-shadow:var(--shadow-lg);font-size:.8rem;font-weight:600;color:var(--navy)}
-.about-image .credential-float.top{top:30px;right:-20px}
-.about-image .credential-float.bottom{bottom:30px;left:-20px}
-.about-content h2{font-family:var(--font-heading);font-size:2.2rem;color:var(--navy);margin-bottom:20px;line-height:1.2}
-.about-content p{color:var(--gray-600);line-height:1.8;margin-bottom:16px}
-.credentials-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-.credential-card{background:var(--gray-50);padding:16px;border-radius:8px;border-left:3px solid var(--gold)}
-.credential-card h4{font-size:.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:600}
-.credential-card p{font-size:.85rem;color:var(--gray-800);font-weight:500;line-height:1.4}
-
-/* SERVICES GRID */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.service-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;transition:all .3s;cursor:default}
-.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--gold)}
-.service-card .icon{width:44px;height:44px;border-radius:10px;background:rgba(201,169,110,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;margin-bottom:16px}
-.service-card h3{font-family:var(--font-heading);font-size:1.05rem;color:var(--navy);margin-bottom:8px}
-.service-card p{color:var(--gray-600);font-size:.85rem;line-height:1.6}
-
-/* DETAIL SECTIONS */
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1100px;margin:0 auto}
-.detail-content h2{font-family:var(--font-heading);font-size:2rem;color:var(--navy);margin-bottom:16px;line-height:1.2}
-.detail-content h3{font-family:var(--font-heading);font-size:1.3rem;color:var(--navy);margin:28px 0 12px}
-.detail-content p{color:var(--gray-600);line-height:1.8;margin-bottom:12px}
-.detail-content ul{list-style:none;padding:0;margin:12px 0}
-.detail-content ul li{padding:8px 0 8px 24px;position:relative;color:var(--gray-600);font-size:.92rem;line-height:1.5}
-.detail-content ul li::before{content:'\2726';position:absolute;left:0;color:var(--gold);font-size:.7rem;top:11px}
-.detail-sidebar{background:var(--gray-50);border-radius:var(--radius);padding:36px;border:1px solid var(--gray-200)}
-.detail-sidebar h3{font-family:var(--font-heading);font-size:1.2rem;color:var(--navy);margin-bottom:20px}
-.step-list{list-style:none;padding:0;counter-reset:steps}
-.step-list li{counter-increment:steps;padding:16px 0 16px 52px;position:relative;border-bottom:1px solid var(--gray-200);color:var(--gray-600);font-size:.9rem;line-height:1.5}
-.step-list li:last-child{border-bottom:none}
-.step-list li::before{content:counter(steps);position:absolute;left:0;top:14px;width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
-
-/* COMPARISON TABLE */
-.comparison-table{width:100%;border-collapse:collapse;margin:32px 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
-.comparison-table th{background:var(--navy);color:var(--white);padding:14px 18px;text-align:left;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.comparison-table td{padding:12px 18px;border-bottom:1px solid var(--gray-200);font-size:.88rem;color:var(--gray-600)}
-.comparison-table tr:nth-child(even){background:var(--gray-50)}
-.comparison-table .check{color:#10b981;font-weight:700}
-.comparison-table .cross{color:#ef4444;font-weight:700}
-
-/* FORMS */
-.form-section{max-width:800px;margin:0 auto}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group.full{grid-column:1/-1}
-.form-label{font-size:.82rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.5px}
-.form-input,.form-select,.form-textarea{padding:12px 16px;border:1px solid var(--gray-200);border-radius:8px;font-size:.9rem;font-family:var(--font-body);transition:border-color .2s;background:var(--white);color:var(--gray-800)}
-.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.15)}
-.form-textarea{resize:vertical;min-height:100px}
-.form-submit{background:var(--gold);color:var(--navy);padding:14px 36px;border:none;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .25s;text-transform:uppercase;letter-spacing:.5px;margin-top:8px}
-.form-submit:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,169,110,.3)}
-.form-success{text-align:center;padding:40px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:var(--radius)}
-.form-success h3{color:#059669;font-family:var(--font-heading);font-size:1.4rem;margin-bottom:8px}
-.form-success p{color:var(--gray-600)}
-
-/* TESTIMONIALS */
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.testimonial-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px;position:relative}
-.testimonial-card::before{content:'\201C';position:absolute;top:16px;left:24px;font-size:3rem;color:var(--gold);opacity:.3;font-family:var(--font-heading);line-height:1}
-.testimonial-card p{color:var(--gray-600);font-size:.92rem;line-height:1.7;margin-bottom:16px;padding-top:20px}
-.testimonial-card .author{display:flex;align-items:center;gap:12px}
-.testimonial-card .avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:.9rem}
-.testimonial-card .name{font-weight:600;color:var(--navy);font-size:.88rem}
-.testimonial-card .stars{color:var(--gold);font-size:.8rem;margin-top:2px}
-
-/* FAQ */
-.faq-list{max-width:800px;margin:0 auto}
-.faq-item{border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:border-color .2s}
-.faq-item.active{border-color:var(--gold)}
-.faq-question{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;cursor:pointer;background:var(--white);transition:background .2s}
-.faq-question:hover{background:var(--gray-50)}
-.faq-question h3{font-size:.95rem;font-weight:600;color:var(--navy);flex:1;padding-right:16px}
-.faq-toggle{width:28px;height:28px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--navy);transition:all .3s;flex-shrink:0}
-.faq-item.active .faq-toggle{background:var(--gold);color:var(--white);transform:rotate(45deg)}
-.faq-answer{padding:0 24px;max-height:0;overflow:hidden;transition:all .3s ease}
-.faq-item.active .faq-answer{padding:0 24px 20px;max-height:300px}
-.faq-answer p{color:var(--gray-600);font-size:.9rem;line-height:1.7}
-
-/* PATIENT INFO */
-.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.info-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px;transition:all .3s}
-.info-card:hover{box-shadow:var(--shadow-md)}
-.info-card h3{font-family:var(--font-heading);font-size:1.15rem;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.info-card h3 .card-icon{color:var(--gold);font-size:1.3rem}
-.info-card p,.info-card ul{color:var(--gray-600);font-size:.88rem;line-height:1.7}
-.info-card ul{list-style:none;padding:0}
-.info-card ul li{padding:4px 0 4px 16px;position:relative}
-.info-card ul li::before{content:'\2022';position:absolute;left:0;color:var(--gold)}
-
-/* LOCATION */
-.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;align-items:start}
-.location-info h3{font-family:var(--font-heading);font-size:1.3rem;color:var(--navy);margin-bottom:16px}
-.location-detail{display:flex;gap:12px;margin-bottom:20px;align-items:flex-start}
-.location-detail .loc-icon{width:36px;height:36px;border-radius:8px;background:rgba(201,169,110,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;font-size:1rem}
-.location-detail .loc-text h4{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:2px}
-.location-detail .loc-text p{font-size:.85rem;color:var(--gray-600);line-height:1.5}
-.map-placeholder{background:linear-gradient(135deg,var(--navy),#1a3a6b);border-radius:var(--radius);height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.5)}
-.map-placeholder .map-pin{font-size:3rem;margin-bottom:12px}
-.cities-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.city-tag{background:var(--gray-50);border:1px solid var(--gray-200);padding:6px 14px;border-radius:20px;font-size:.78rem;color:var(--gray-600);font-weight:500}
-
-/* FOOTER */
-.footer{background:var(--navy);color:rgba(255,255,255,.7);padding:80px 24px 32px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-.footer h4{color:var(--gold);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
-.footer p,.footer a{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6)}
-.footer a:hover{color:var(--gold)}
-.footer-brand p{margin-bottom:12px}
-.footer-links{list-style:none;padding:0}
-.footer-links li{margin-bottom:6px}
-.footer-bottom{max-width:1200px;margin:0 auto;padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:.78rem;color:rgba(255,255,255,.4)}
-.footer-bottom .powered{color:var(--gold);font-weight:600}
-
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .about-grid,.detail-grid,.location-grid{grid-template-columns:1fr;gap:32px}
-  .about-image{height:350px}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:640px){
-  .section{padding:60px 16px}
-  .hero{padding:100px 16px 60px}
-  .hero h1{font-size:2rem}
-  .hero-buttons{flex-direction:column;align-items:center}
-  .trust-row{gap:16px}
-  .services-grid{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
-  .testimonials-grid{grid-template-columns:1fr}
-  .info-cards{grid-template-columns:1fr}
-  .credentials-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .comparison-table{font-size:.8rem}
-  .comparison-table th,.comparison-table td{padding:8px 10px}
-}
-`;
-
-/* ========== COMPONENTS ========== */
-
-function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+/* ─── Utility: useIntersectionObserver ─── */
+function useIntersectionObserver(options = {}) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const element = ref.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.1, ...options }
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
   }, []);
 
+  return [ref, isVisible];
+}
+
+/* ─── 2. Nav ─── */
+function Nav({ scrolled, mobileMenuOpen, setMobileMenuOpen, setActiveSection, setShowCalculator, setShowKnowledgeBase }) {
   const links = [
-    ["Home", "#home"], ["About", "#about"], ["Services", "#services"],
-    ["Dental Implants", "#dental-implants"], ["Wisdom Teeth", "#wisdom-teeth"],
-    ["All-on-4", "#all-on-4"], ["Referrals", "#referral"], ["Contact", "#contact"],
+    { label: "About", target: "about" },
+    { label: "Services", target: "services" },
+    { label: "AI Tools", target: "symptom-checker" },
+    { label: "Implants", target: "dental-implants" },
+    { label: "Cost Calculator", target: "cost-calculators" },
+    { label: "Knowledge Base", target: "knowledge-base" },
+    { label: "Referrals", target: "referral-form" },
+    { label: "Contact", target: "contact" },
   ];
 
-  const handleClick = (e, href) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id) => {
+    setMobileMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <>
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <div className="nav-inner">
-          <a href="#home" className="nav-logo" onClick={(e) => handleClick(e, "#home")}>
-            Galleria Oral Surgery
-            <span>Dr. Alexander Antipov, DDS</span>
-          </a>
-          <ul className="nav-links">
-            {links.map(([label, href]) => (
-              <li key={href}><a href={href} onClick={(e) => handleClick(e, href)}>{label}</a></li>
-            ))}
-            <li><a href={`tel:${PRACTICE.phone}`} className="nav-cta">{PRACTICE.phone}</a></li>
-          </ul>
-          <button className="hamburger" onClick={() => setMenuOpen(true)} aria-label="Open menu">
-            <span /><span /><span />
-          </button>
+    <nav className={`nav-fixed ${scrolled ? "nav-scrolled" : ""}`}>
+      <div className="nav-inner">
+        <div className="nav-brand" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <span className="nav-logo">GALLERIA ORAL SURGERY</span>
+          <span className="nav-subtitle">Oral &amp; Maxillofacial Surgery</span>
         </div>
-      </nav>
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">&times;</button>
-        {links.map(([label, href]) => (
-          <a key={href} href={href} onClick={(e) => handleClick(e, href)}>{label}</a>
-        ))}
-        <a href={`tel:${PRACTICE.phone}`} className="nav-cta" style={{ marginTop: 16 }}>{PRACTICE.phone}</a>
+        <div className={`nav-links ${mobileMenuOpen ? "nav-links-open" : ""}`}>
+          {links.map((l) => (
+            <a key={l.target} className="nav-link" onClick={() => scrollTo(l.target)}>
+              {l.label}
+            </a>
+          ))}
+          <a href="tel:9167832110" className="nav-cta-btn">(916) 783-2110</a>
+        </div>
+        <button className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+          <span className={`hamburger-line ${mobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${mobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${mobileMenuOpen ? "open" : ""}`}></span>
+        </button>
       </div>
-    </>
+    </nav>
   );
 }
 
-function Hero() {
+/* ─── 3. Hero ─── */
+function Hero({ setActiveSection }) {
+  const [ref, isVisible] = useIntersectionObserver();
+
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="hero" id="home">
-      <div className="hero-content">
-        <div className="hero-badge">Roseville, California</div>
-        <h1>Excellence in Oral &amp; <em>Maxillofacial Surgery</em></h1>
-        <p>
-          Dr. Alexander Antipov, DDS provides full scope oral and maxillofacial surgery and
-          dental implant services at Galleria Oral Surgery in Roseville, CA. From wisdom teeth
-          to full arch All-on-4 dental implants, experience exceptional surgical care.
+    <section className="hero-section" id="hero" ref={ref}>
+      <div className={`hero-content ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <span className="hero-badge">Board-Eligible Oral &amp; Maxillofacial Surgeon</span>
+        <h1 className="hero-title">
+          Advanced Oral Surgery, <em>Powered by Intelligence</em>
+        </h1>
+        <p className="hero-subtitle">
+          Experience the future of oral surgery with AI-powered diagnostic tools, evidence-based treatment planning, and compassionate care — all in one advanced practice in Roseville, CA.
         </p>
         <div className="hero-buttons">
-          <a href="#contact" className="btn-primary" onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}>Schedule Consultation</a>
-          <a href="#referral" className="btn-secondary" onClick={(e) => { e.preventDefault(); document.querySelector("#referral")?.scrollIntoView({ behavior: "smooth" }); }}>Refer a Patient</a>
+          <button className="btn-primary" onClick={() => scrollTo("symptom-checker")}>AI Symptom Check</button>
+          <button className="btn-secondary" onClick={() => scrollTo("cost-calculators")}>Calculate Costs</button>
+          <button className="btn-outline" onClick={() => scrollTo("contact")}>Schedule Consultation</button>
         </div>
-        <div className="trust-row">
-          {[
-            ["\u2726", "Full Scope OMS"],
-            ["\u2726", "Board-Eligible"],
-            ["\u2726", "IV Sedation"],
-            ["\u2726", "3D Imaging"],
-            ["\u2726", "Same-Day Consults"],
-          ].map(([icon, label]) => (
-            <div className="trust-item" key={label}>
-              <div className="trust-icon">{icon}</div>
-              {label}
+        <div className="trust-badges">
+          <div className="trust-badge">
+            <span className="trust-icon">🏥</span>
+            <span>AAOMS Member</span>
+          </div>
+          <div className="trust-badge">
+            <span className="trust-icon">📐</span>
+            <span>3D-Guided Surgery</span>
+          </div>
+          <div className="trust-badge">
+            <span className="trust-icon">💉</span>
+            <span>IV Sedation Certified</span>
+          </div>
+          <div className="trust-badge">
+            <span className="trust-icon">⚡</span>
+            <span>Same-Day Implants</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 4. About ─── */
+function About() {
+  const [ref, isVisible] = useIntersectionObserver();
+  return (
+    <section className="section about-section" id="about" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Meet Dr. Antipov</h2>
+        <p className="section-subtitle">Your Trusted Oral &amp; Maxillofacial Surgeon</p>
+        <div className="about-grid">
+          <div className="about-image-wrap">
+            <div className="about-image-placeholder">
+              <span style={{ fontSize: "4rem" }}>👨‍⚕️</span>
+              <p>Dr. Antipov</p>
+            </div>
+          </div>
+          <div className="about-text">
+            <p>
+              Dr. Antipov is a board-eligible oral and maxillofacial surgeon dedicated to providing the highest standard of surgical care. With extensive training in dental implants, wisdom teeth removal, corrective jaw surgery, and facial trauma reconstruction, Dr. Antipov combines surgical precision with a compassionate approach.
+            </p>
+            <p>
+              After completing a rigorous residency program, Dr. Antipov established Galleria Oral Surgery in Roseville, CA to bring advanced surgical techniques — including 3D-guided implant placement and IV sedation — to the greater Sacramento area.
+            </p>
+            <div className="about-credentials">
+              <div className="credential-item">
+                <strong>Education</strong>
+                <span>DMD / MD — Oral &amp; Maxillofacial Surgery Residency</span>
+              </div>
+              <div className="credential-item">
+                <strong>Certifications</strong>
+                <span>Board-Eligible, AAOMS Fellow, BLS/ACLS/PALS Certified</span>
+              </div>
+              <div className="credential-item">
+                <strong>Specialties</strong>
+                <span>Dental Implants, Wisdom Teeth, Jaw Surgery, Bone Grafting</span>
+              </div>
+              <div className="credential-item">
+                <strong>Approach</strong>
+                <span>Evidence-based care enhanced by the latest technology</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 5. AISymptomChecker ─── */
+function AISymptomChecker() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const [step, setStep] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [answers, setAnswers] = useState({});
+  const [severity, setSeverity] = useState(5);
+
+  const handleCategorySelect = (cat) => {
+    setSelectedCategory(cat);
+    setAnswers({});
+    setStep(2);
+  };
+
+  const handleAnswerChange = (qIndex, value) => {
+    setAnswers((prev) => ({ ...prev, [qIndex]: value }));
+  };
+
+  const getResults = () => {
+    if (!selectedCategory) return null;
+    const sevLevel = severity >= 8 ? "Emergency" : severity >= 5 ? "Urgent" : "Routine";
+    const rec = SYMPTOM_RECOMMENDATIONS?.[selectedCategory.id] || {
+      condition: selectedCategory.name + " related condition",
+      procedures: ["Consultation & Evaluation"],
+      description: "Based on your symptoms, we recommend a professional evaluation to determine the best course of treatment.",
+    };
+    return { ...rec, urgency: sevLevel };
+  };
+
+  const reset = () => {
+    setStep(1);
+    setSelectedCategory(null);
+    setAnswers({});
+    setSeverity(5);
+  };
+
+  const results = step === 4 ? getResults() : null;
+
+  return (
+    <section className="section symptom-section" id="symptom-checker" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">AI Symptom Checker</h2>
+        <p className="section-subtitle">Answer a few questions to get a preliminary assessment of your oral health concern</p>
+
+        <div className="symptom-progress">
+          <div className="progress-bar">
+            <div className="progress-fill" style={{ width: `${(step / 4) * 100}%` }}></div>
+          </div>
+          <div className="progress-steps">
+            {["Category", "Details", "Severity", "Results"].map((label, i) => (
+              <span key={i} className={`progress-step ${step >= i + 1 ? "active" : ""}`}>{label}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="symptom-wizard">
+          {step === 1 && (
+            <div className="symptom-step">
+              <h3>What area is bothering you?</h3>
+              <div className="symptom-grid">
+                {SYMPTOM_CATEGORIES.map((cat) => (
+                  <div key={cat.id} className="symptom-card" onClick={() => handleCategorySelect(cat)}>
+                    <span className="symptom-card-icon">{cat.icon}</span>
+                    <span className="symptom-card-label">{cat.name}</span>
+                    {cat.description && <span className="symptom-card-desc">{cat.description}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 2 && selectedCategory && (
+            <div className="symptom-step">
+              <h3>Tell us more about your {selectedCategory.name.toLowerCase()} symptoms</h3>
+              <div className="followup-questions">
+                {(selectedCategory.followUps || []).map((q, qIndex) => (
+                  <div key={qIndex} className="followup-question">
+                    <label className="followup-label">{q.question}</label>
+                    {q.type === "select" && (
+                      <select
+                        className="form-input"
+                        value={answers[qIndex] || ""}
+                        onChange={(e) => handleAnswerChange(qIndex, e.target.value)}
+                      >
+                        <option value="">Select...</option>
+                        {q.options.map((opt, oi) => (
+                          <option key={oi} value={opt}>{opt}</option>
+                        ))}
+                      </select>
+                    )}
+                    {q.type === "radio" && (
+                      <div className="radio-group">
+                        {q.options.map((opt, oi) => (
+                          <label key={oi} className="radio-label">
+                            <input
+                              type="radio"
+                              name={`q-${qIndex}`}
+                              value={opt}
+                              checked={answers[qIndex] === opt}
+                              onChange={() => handleAnswerChange(qIndex, opt)}
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                    {q.type === "checkbox" && (
+                      <div className="checkbox-group">
+                        {q.options.map((opt, oi) => (
+                          <label key={oi} className="checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={(answers[qIndex] || []).includes(opt)}
+                              onChange={(e) => {
+                                const prev = answers[qIndex] || [];
+                                handleAnswerChange(
+                                  qIndex,
+                                  e.target.checked ? [...prev, opt] : prev.filter((x) => x !== opt)
+                                );
+                              }}
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                    {(!q.type || q.type === "text") && (
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={answers[qIndex] || ""}
+                        onChange={(e) => handleAnswerChange(qIndex, e.target.value)}
+                        placeholder="Type your answer..."
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="wizard-nav">
+                <button className="btn-secondary" onClick={() => setStep(1)}>Back</button>
+                <button className="btn-primary" onClick={() => setStep(3)}>Next</button>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="symptom-step">
+              <h3>How severe is your discomfort?</h3>
+              <div className="severity-slider-wrap">
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  value={severity}
+                  onChange={(e) => setSeverity(Number(e.target.value))}
+                  className="severity-slider"
+                />
+                <div className="severity-labels">
+                  <span>1 - Mild</span>
+                  <span className="severity-value">{severity}/10</span>
+                  <span>10 - Severe</span>
+                </div>
+                <div className="severity-description">
+                  {severity <= 3 && <p>Mild discomfort — may be manageable but worth evaluating.</p>}
+                  {severity > 3 && severity <= 6 && <p>Moderate discomfort — you should schedule an appointment soon.</p>}
+                  {severity > 6 && severity <= 8 && <p>Significant pain — we recommend being seen within a few days.</p>}
+                  {severity > 8 && <p>Severe pain — please call us immediately or visit the emergency room.</p>}
+                </div>
+              </div>
+              <div className="wizard-nav">
+                <button className="btn-secondary" onClick={() => setStep(2)}>Back</button>
+                <button className="btn-primary" onClick={() => setStep(4)}>See Results</button>
+              </div>
+            </div>
+          )}
+
+          {step === 4 && results && (
+            <div className="symptom-step">
+              <h3>Your Assessment</h3>
+              <div className="results-card">
+                <span className={`urgency-badge urgency-${results.urgency.toLowerCase()}`}>
+                  {results.urgency}
+                </span>
+                <h4 className="results-condition">{results.condition}</h4>
+                <p className="results-description">{results.description}</p>
+                <div className="results-procedures">
+                  <strong>Recommended Procedure(s):</strong>
+                  <ul>
+                    {results.procedures.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="results-disclaimer">
+                  <strong>⚠ Disclaimer:</strong> This is not a diagnosis. This AI-powered tool provides general guidance only. Please schedule a consultation for a proper evaluation and treatment plan.
+                </div>
+                <div className="results-actions">
+                  <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+                    Schedule Consultation
+                  </button>
+                  {results.urgency === "Emergency" && (
+                    <a href="tel:9167832110" className="btn-emergency">Call Now: (916) 783-2110</a>
+                  )}
+                  <a href={`https://wa.me/19167832110?text=${encodeURIComponent("Hi, I just used the AI Symptom Checker and would like to schedule a consultation.")}`} className="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
+              <button className="btn-secondary" onClick={reset} style={{ marginTop: "1rem" }}>Start Over</button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 6. Services ─── */
+function ServicesSection() {
+  const [ref, isVisible] = useIntersectionObserver();
+  return (
+    <section className="section services-section" id="services" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Our Services</h2>
+        <p className="section-subtitle">Comprehensive oral &amp; maxillofacial surgery services</p>
+        <div className="services-grid">
+          {SERVICES.map((svc, i) => (
+            <div key={i} className="service-card">
+              <span className="service-icon">{svc.icon}</span>
+              <h3 className="service-name">{svc.name}</h3>
+              <p className="service-desc">{svc.description}</p>
             </div>
           ))}
         </div>
@@ -369,405 +400,1226 @@ function Hero() {
   );
 }
 
-function About() {
-  return (
-    <section className="section section-gray" id="about">
-      <div className="container">
-        <div className="about-grid fade-in">
-          <div className="about-image">
-            <div className="about-image-placeholder">AA</div>
-            <div className="credential-float top">AAOMS Member</div>
-            <div className="credential-float bottom">Full Scope OMS</div>
-          </div>
-          <div className="about-content">
-            <div className="section-badge">Meet Your Surgeon</div>
-            <h2>Dr. Alexander Antipov, DDS</h2>
-            <p>
-              Dr. Alexander Antipov is a highly trained oral and maxillofacial surgeon dedicated
-              to providing the highest standard of surgical care in Roseville, California.
-              With extensive training in the full scope of oral and maxillofacial surgery,
-              Dr. Antipov brings precision, compassion, and advanced techniques to every procedure.
-            </p>
-            <p>
-              His expertise spans dental implant placement and full arch rehabilitation,
-              wisdom teeth management, corrective jaw surgery, facial trauma repair, bone
-              grafting, and the diagnosis and treatment of oral pathology. Dr. Antipov
-              utilizes the latest 3D imaging and computer-guided surgical planning to ensure
-              predictable, excellent outcomes for every patient.
-            </p>
-            <div className="credentials-grid">
-              <div className="credential-card">
-                <h4>Education</h4>
-                <p>Doctor of Dental Surgery (DDS)</p>
-              </div>
-              <div className="credential-card">
-                <h4>Residency</h4>
-                <p>Oral & Maxillofacial Surgery Residency Training</p>
-              </div>
-              <div className="credential-card">
-                <h4>Memberships</h4>
-                <p>AAOMS, ADA, CDA, Sacramento District Dental Society</p>
-              </div>
-              <div className="credential-card">
-                <h4>Privileges</h4>
-                <p>Hospital & Ambulatory Surgery Center Privileges</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+/* ─── 7. DentalImplants ─── */
+function DentalImplants() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const implantTypes = [
+    { name: "Single Tooth Implant", desc: "Replaces one missing tooth with a titanium post and custom crown.", icon: "🦷" },
+    { name: "Implant Bridge", desc: "Two implants support a bridge to replace 3-4 adjacent missing teeth.", icon: "🌉" },
+    { name: "All-on-4 / All-on-6", desc: "Full arch restoration using 4-6 strategically placed implants.", icon: "✨" },
+    { name: "Mini Implants", desc: "Smaller diameter implants ideal for denture stabilization.", icon: "📌" },
+  ];
+  const processSteps = [
+    { step: "1", title: "Consultation & 3D Scan", desc: "Comprehensive exam with CBCT imaging to plan your treatment." },
+    { step: "2", title: "Implant Placement", desc: "Titanium implant post is surgically placed into the jawbone." },
+    { step: "3", title: "Healing & Integration", desc: "3-6 months for the implant to fuse with your bone (osseointegration)." },
+    { step: "4", title: "Crown Placement", desc: "Custom-made crown is attached to the implant for a natural look." },
+  ];
+  const benefits = [
+    "Look and feel like natural teeth",
+    "Prevent bone loss in the jaw",
+    "No damage to adjacent teeth",
+    "99% success rate with proper care",
+    "Eat your favorite foods again",
+    "Last a lifetime with proper maintenance",
+  ];
 
-function ServicesGrid() {
   return (
-    <section className="section" id="services">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Our Services</div>
-          <h2 className="section-title">Full Scope Oral & Maxillofacial Surgery</h2>
-          <p className="section-subtitle">
-            From routine extractions to complex reconstructive procedures, Galleria Oral Surgery
-            provides the complete range of oral and maxillofacial surgery services under one roof.
-          </p>
+    <section className="section implants-section" id="dental-implants" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Dental Implants</h2>
+        <p className="section-subtitle">The gold standard in tooth replacement — permanent, natural-looking results</p>
+
+        <h3 className="sub-heading">Types of Dental Implants</h3>
+        <div className="implant-types-grid">
+          {implantTypes.map((t, i) => (
+            <div key={i} className="implant-type-card">
+              <span className="implant-type-icon">{t.icon}</span>
+              <h4>{t.name}</h4>
+              <p>{t.desc}</p>
+            </div>
+          ))}
         </div>
-        <div className="services-grid">
-          {SERVICES.map((s, i) => (
-            <div className="service-card fade-in" key={i}>
-              <div className="icon">{s.icon}</div>
-              <h3>{s.title}</h3>
+
+        <h3 className="sub-heading">The Implant Process</h3>
+        <div className="process-steps">
+          {processSteps.map((s, i) => (
+            <div key={i} className="process-step-card">
+              <div className="step-number">{s.step}</div>
+              <h4>{s.title}</h4>
               <p>{s.desc}</p>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-function DentalImplants() {
-  return (
-    <section className="section section-gray" id="dental-implants">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Dental Implant Specialist</div>
-          <h2 className="section-title">Dental Implants in Roseville, CA</h2>
-          <p className="section-subtitle">
-            Dental implants are the gold standard for replacing missing teeth. Dr. Antipov provides
-            expert implant placement using 3D-guided surgery for precise, predictable, and long-lasting results.
-          </p>
-        </div>
-        <div className="detail-grid fade-in">
-          <div className="detail-content">
-            <h3>Why Choose Dental Implants?</h3>
-            <ul>
-              <li>Look, feel, and function like natural teeth</li>
-              <li>Preserve jawbone and prevent bone loss</li>
-              <li>No damage to adjacent healthy teeth</li>
-              <li>Over 95% long-term success rate</li>
-              <li>Eat your favorite foods with confidence</li>
-              <li>Lifetime solution with proper care</li>
-            </ul>
-            <h3>Types of Dental Implants We Offer</h3>
-            <p>
-              <strong>Single Tooth Implants</strong> replace individual missing teeth with a titanium
-              implant post, abutment, and custom porcelain crown that blends seamlessly with your smile.
-            </p>
-            <p>
-              <strong>Multiple Tooth Implants</strong> use implant-supported bridges to replace
-              several adjacent missing teeth without the need for removable partial dentures.
-            </p>
-            <p>
-              <strong>Full Arch Implants (All-on-4/All-on-6)</strong> provide a complete set of
-              fixed teeth supported by four to six strategically placed implants, often completed
-              in a single surgical appointment.
-            </p>
-            <h3>Am I a Candidate?</h3>
-            <p>
-              Most adults with missing or failing teeth are candidates for dental implants.
-              During your consultation, Dr. Antipov will evaluate your oral health, review 3D
-              imaging of your jawbone, discuss your goals, and create a personalized treatment plan.
-              Even patients with bone loss may qualify with bone grafting procedures.
-            </p>
-          </div>
-          <div className="detail-sidebar">
-            <h3>The Dental Implant Process</h3>
-            <ol className="step-list">
-              <li><strong>Consultation & 3D Imaging</strong> \u2014 Comprehensive exam, CBCT scan, and treatment planning</li>
-              <li><strong>Treatment Planning</strong> \u2014 Computer-guided surgical plan for precise implant positioning</li>
-              <li><strong>Implant Placement</strong> \u2014 Titanium implant placed into the jawbone under anesthesia</li>
-              <li><strong>Healing & Integration</strong> \u2014 Osseointegration period (3\u20136 months) as implant fuses with bone</li>
-              <li><strong>Final Restoration</strong> \u2014 Custom crown, bridge, or full arch prosthesis attached to implant</li>
-            </ol>
-            <div style={{ marginTop: 24, padding: "16px", background: "rgba(201,169,110,.08)", borderRadius: 8, borderLeft: "3px solid var(--gold)" }}>
-              <p style={{ fontSize: ".85rem", color: "var(--gray-600)", marginBottom: 8 }}>
-                <strong style={{ color: "var(--navy)" }}>Complimentary Implant Consultation</strong>
-              </p>
-              <p style={{ fontSize: ".82rem", color: "var(--gray-600)" }}>
-                Includes exam, 3D imaging review, and personalized treatment plan with cost estimate.
-              </p>
+        <h3 className="sub-heading">Benefits</h3>
+        <div className="benefits-grid">
+          {benefits.map((b, i) => (
+            <div key={i} className="benefit-item">
+              <span className="benefit-check">✓</span>
+              <span>{b}</span>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="candidacy-box">
+          <h3>Am I a Candidate?</h3>
+          <p>Most adults with missing teeth are candidates for dental implants. Ideal candidates have adequate jawbone density, healthy gums, and good overall health. Even if you have experienced bone loss, bone grafting procedures can often make implants possible. The best way to find out is with a comprehensive consultation including 3D imaging.</p>
+          <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+            Schedule Your Implant Consultation
+          </button>
         </div>
       </div>
     </section>
   );
 }
 
+/* ─── 8. AllOnFour ─── */
 function AllOnFour() {
-  return (
-    <section className="section" id="all-on-4">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Full Arch Solutions</div>
-          <h2 className="section-title">All-on-4 Full Arch Dental Implants</h2>
-          <p className="section-subtitle">
-            Transform your smile in as little as one day. All-on-4 dental implants provide a
-            complete arch of fixed, beautiful teeth using just four strategically placed implants.
-          </p>
-        </div>
-        <div className="detail-grid fade-in">
-          <div className="detail-content">
-            <h3>What Are All-on-4 Dental Implants?</h3>
-            <p>
-              The All-on-4 treatment concept is a revolutionary approach to full arch tooth
-              replacement. Using just four dental implants \u2014 two placed vertically in the front
-              of the jaw and two placed at angles in the back \u2014 an entire arch of fixed,
-              non-removable teeth can be supported without the need for bone grafting in most cases.
-            </p>
-            <h3>Benefits Over Traditional Dentures</h3>
-            <ul>
-              <li>Fixed, non-removable teeth that never slip or shift</li>
-              <li>Preserves jawbone and maintains facial structure</li>
-              <li>Eat all foods including steak, corn, and apples</li>
-              <li>No adhesives, pastes, or nightly removal</li>
-              <li>Natural appearance and comfortable fit</li>
-              <li>Often completed in a single surgical appointment</li>
-              <li>Typically does not require bone grafting</li>
-            </ul>
-            <h3>The "Teeth in a Day" Concept</h3>
-            <p>
-              Many All-on-4 patients receive their new provisional teeth on the same day as
-              their implant surgery. This means you can walk into Galleria Oral Surgery with
-              failing or missing teeth and walk out with a beautiful, functional smile \u2014 all
-              in a single appointment.
-            </p>
-          </div>
-          <div className="detail-sidebar">
-            <h3>All-on-4 vs. Alternatives</h3>
-            <table className="comparison-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>All-on-4</th>
-                  <th>Dentures</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Fixed / Non-Removable</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-                <tr><td>Preserves Bone</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-                <tr><td>Eat All Foods</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-                <tr><td>No Adhesives Needed</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-                <tr><td>Natural Appearance</td><td className="check">\u2713</td><td>\u2014</td></tr>
-                <tr><td>Long-Term Value</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-                <tr><td>Same-Day Teeth</td><td className="check">\u2713</td><td className="cross">\u2717</td></tr>
-              </tbody>
-            </table>
-            <a href="#contact" className="btn-primary" style={{ display: "block", textAlign: "center", marginTop: 20 }}
-              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}>
-              Schedule All-on-4 Consultation
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WisdomTeeth() {
-  const [openFaq, setOpenFaq] = useState(null);
-  const wisdomFaqs = [
-    { q: "When should wisdom teeth be removed?", a: "Wisdom teeth are typically recommended for removal between ages 17\u201325, before roots fully develop. However, they can be removed at any age if causing problems. Early evaluation allows for easier removal and faster recovery." },
-    { q: "Is wisdom tooth removal painful?", a: "With modern anesthesia including IV sedation, most patients feel no pain during the procedure and often have no memory of it. Post-operative discomfort is well-managed with prescribed medications and typically subsides within a few days." },
-    { q: "How long is recovery?", a: "Most patients return to normal activities within 3\u20135 days. Soft diet is recommended for the first week. Complete healing of the extraction sites takes approximately 2 weeks. Swelling peaks around day 2\u20133 and gradually resolves." },
-    { q: "What if I keep my wisdom teeth?", a: "Impacted or partially erupted wisdom teeth can lead to infection, cysts, damage to adjacent teeth, crowding, and periodontal disease. Dr. Antipov will evaluate your specific situation and recommend the best course of action." },
+  const [ref, isVisible] = useIntersectionObserver();
+  const benefits = [
+    { title: "Same-Day Teeth", desc: "Walk in with missing teeth, walk out with a full smile — often in a single visit.", icon: "⚡" },
+    { title: "No Bone Grafting", desc: "Angled implants utilize existing bone, often eliminating the need for grafting.", icon: "🦴" },
+    { title: "Cost-Effective", desc: "Fewer implants and procedures mean lower overall cost than individual implants.", icon: "💰" },
+    { title: "Natural Appearance", desc: "Custom-designed prosthetics that look and function like natural teeth.", icon: "😁" },
+  ];
+  const comparisonRows = [
+    { feature: "Number of Implants", allon4: "4-6 per arch", dentures: "0", individual: "6-8+ per arch" },
+    { feature: "Bone Preservation", allon4: "Excellent", dentures: "Poor — accelerates loss", individual: "Excellent" },
+    { feature: "Stability", allon4: "Fixed — no movement", dentures: "Can slip and move", individual: "Fixed — no movement" },
+    { feature: "Eating Ability", allon4: "Eat anything", dentures: "Limited — soft foods", individual: "Eat anything" },
+    { feature: "Taste", allon4: "Full taste — no palate coverage", dentures: "Reduced — palate covered", individual: "Full taste" },
+    { feature: "Maintenance", allon4: "Brush & floss normally", dentures: "Remove & soak nightly", individual: "Brush & floss normally" },
+    { feature: "Treatment Time", allon4: "Same-day possible", dentures: "Weeks for fitting", individual: "6-12+ months" },
+    { feature: "Cost (per arch)", allon4: "$20,000-$35,000", dentures: "$1,000-$3,000", individual: "$30,000-$60,000+" },
+    { feature: "Longevity", allon4: "20+ years", dentures: "5-8 years", individual: "Lifetime" },
   ];
 
   return (
-    <section className="section section-gray" id="wisdom-teeth">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Wisdom Teeth Specialist</div>
-          <h2 className="section-title">Wisdom Teeth Removal in Roseville</h2>
-          <p className="section-subtitle">
-            Safe, comfortable wisdom teeth removal with IV sedation by an experienced oral surgeon.
-            Galleria Oral Surgery provides expert care for impacted and erupted wisdom teeth.
-          </p>
+    <section className="section allon4-section" id="all-on-four" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">All-on-4 Full Mouth Restoration</h2>
+        <p className="section-subtitle">A full set of permanent teeth in as little as one day</p>
+
+        <div className="benefits-cards">
+          {benefits.map((b, i) => (
+            <div key={i} className="benefit-card">
+              <span className="benefit-card-icon">{b.icon}</span>
+              <h4>{b.title}</h4>
+              <p>{b.desc}</p>
+            </div>
+          ))}
         </div>
-        <div className="detail-grid fade-in">
-          <div className="detail-content">
-            <h3>Signs You May Need Wisdom Teeth Removed</h3>
-            <ul>
-              <li>Pain or swelling in the back of the jaw</li>
-              <li>Red, swollen, or bleeding gums around wisdom teeth</li>
-              <li>Jaw stiffness or difficulty opening the mouth</li>
-              <li>Recurring infections or bad taste in the mouth</li>
-              <li>Crowding or shifting of adjacent teeth</li>
-              <li>Cyst formation visible on dental X-rays</li>
-              <li>Difficulty cleaning around partially erupted teeth</li>
-            </ul>
-            <h3>Types of Wisdom Tooth Impaction</h3>
-            <p>
-              <strong>Soft Tissue Impaction:</strong> The tooth has emerged through the bone
-              but is partially or fully covered by gum tissue, creating a pocket that traps
-              food and bacteria.
-            </p>
-            <p>
-              <strong>Partial Bony Impaction:</strong> The tooth has partially emerged through
-              the jawbone but remains partially encased, making it difficult to clean and prone to decay.
-            </p>
-            <p>
-              <strong>Full Bony Impaction:</strong> The tooth is completely encased within the
-              jawbone and requires surgical removal. This is the most complex type of impaction.
-            </p>
-            <h3>Sedation Options</h3>
-            <p>
-              Dr. Antipov is trained in all levels of anesthesia administration. Most wisdom
-              teeth patients choose IV sedation, which provides a comfortable, anxiety-free
-              experience with no memory of the procedure. Local anesthesia and nitrous oxide
-              are also available.
-            </p>
-          </div>
-          <div className="detail-sidebar">
-            <h3>Common Questions</h3>
-            <div className="faq-list">
-              {wisdomFaqs.map((faq, i) => (
-                <div className={`faq-item ${openFaq === i ? "active" : ""}`} key={i}>
-                  <div className="faq-question" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                    <h3>{faq.q}</h3>
-                    <div className="faq-toggle">+</div>
+
+        <h3 className="sub-heading">How Does All-on-4 Compare?</h3>
+        <div className="comparison-table-wrap">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th className="highlight-col">All-on-4</th>
+                <th>Traditional Dentures</th>
+                <th>Individual Implants</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row, i) => (
+                <tr key={i}>
+                  <td><strong>{row.feature}</strong></td>
+                  <td className="highlight-col">{row.allon4}</td>
+                  <td>{row.dentures}</td>
+                  <td>{row.individual}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 9. WisdomTeeth ─── */
+function WisdomTeeth() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const signs = [
+    "Pain or tenderness in the back of your mouth",
+    "Red, swollen, or bleeding gums around the back teeth",
+    "Jaw pain or stiffness",
+    "Difficulty opening your mouth fully",
+    "Bad breath or unpleasant taste near the back teeth",
+    "Recurring infections in the gum tissue",
+  ];
+  const sedationOptions = [
+    { name: "Local Anesthesia", desc: "Numbing of the surgical area only. You remain fully awake.", level: "Basic", icon: "💉" },
+    { name: "Nitrous Oxide", desc: "Laughing gas for mild relaxation. Quick recovery.", level: "Mild", icon: "😌" },
+    { name: "IV Sedation", desc: "Twilight sedation — you'll be relaxed and likely won't remember the procedure.", level: "Moderate", icon: "💤" },
+    { name: "General Anesthesia", desc: "Full unconscious sedation for complex cases or high anxiety.", level: "Deep", icon: "🏥" },
+  ];
+  const timeline = [
+    { day: "Day 1-2", title: "Initial Recovery", details: "Rest, ice packs, soft foods. Some swelling and mild bleeding is normal." },
+    { day: "Day 3-4", title: "Peak Swelling", details: "Swelling peaks then begins to decrease. Continue soft foods and medication." },
+    { day: "Day 5-7", title: "Improvement", details: "Noticeable improvement. Can gradually return to normal activities." },
+    { day: "Week 2", title: "Follow-Up", details: "Post-op appointment. Most patients are fully recovered." },
+  ];
+
+  return (
+    <section className="section wisdom-section" id="wisdom-teeth" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Wisdom Teeth Removal</h2>
+        <p className="section-subtitle">Safe, comfortable extraction with multiple sedation options</p>
+
+        <h3 className="sub-heading">Signs of Impaction</h3>
+        <div className="signs-grid">
+          {signs.map((s, i) => (
+            <div key={i} className="sign-item">
+              <span className="sign-icon">⚠</span>
+              <span>{s}</span>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="sub-heading">Sedation Options</h3>
+        <div className="sedation-grid">
+          {sedationOptions.map((s, i) => (
+            <div key={i} className="sedation-card">
+              <span className="sedation-icon">{s.icon}</span>
+              <h4>{s.name}</h4>
+              <span className="sedation-level">{s.level}</span>
+              <p>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="sub-heading">Recovery Timeline</h3>
+        <div className="timeline">
+          {timeline.map((t, i) => (
+            <div key={i} className="timeline-item">
+              <div className="timeline-marker">{t.day}</div>
+              <div className="timeline-content">
+                <h4>{t.title}</h4>
+                <p>{t.details}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 10. CostCalculators ─── */
+function CostCalculators() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = ["Dental Implants", "All-on-4 / Full Mouth", "Wisdom Teeth", "Financing"];
+
+  return (
+    <section className="section calculators-section" id="cost-calculators" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Cost Calculators</h2>
+        <p className="section-subtitle">Get an estimate for your treatment — instant, transparent pricing</p>
+
+        <div className="calc-tabs">
+          {tabs.map((tab, i) => (
+            <button key={i} className={`calc-tab ${activeTab === i ? "active" : ""}`} onClick={() => setActiveTab(i)}>
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <div className="calc-content">
+          {activeTab === 0 && <ImplantCalculator />}
+          {activeTab === 1 && <AllOnFourCalculator />}
+          {activeTab === 2 && <WisdomTeethCalculator />}
+          {activeTab === 3 && <FinancingCalculator />}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ImplantCalculator() {
+  const [step, setStep] = useState(1);
+  const [teethCount, setTeethCount] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [boneCondition, setBoneCondition] = useState(null);
+  const [additionalNeeds, setAdditionalNeeds] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+
+  const teethOptions = [
+    { label: "1 Tooth", value: "single", icon: "1️⃣" },
+    { label: "2-3 Teeth", value: "multiple", icon: "2️⃣" },
+    { label: "4-6 Teeth", value: "several", icon: "🔢" },
+    { label: "Full Arch", value: "full", icon: "🦷" },
+  ];
+  const locationOptions = [
+    { label: "Upper Jaw", value: "upper" },
+    { label: "Lower Jaw", value: "lower" },
+    { label: "Both", value: "both" },
+  ];
+  const boneOptions = [
+    { label: "Good", value: "good", desc: "Adequate bone density" },
+    { label: "Moderate Loss", value: "moderate", desc: "Some bone grafting may be needed" },
+    { label: "Significant Loss", value: "significant", desc: "Bone grafting likely required" },
+  ];
+  const addOns = [
+    { label: "Bone Grafting", value: "bone_grafting" },
+    { label: "Sinus Lift", value: "sinus_lift" },
+    { label: "Tooth Extractions", value: "extractions" },
+    { label: "IV Sedation", value: "iv_sedation" },
+  ];
+
+  const toggleAddOn = (val) => {
+    setAdditionalNeeds((prev) =>
+      prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]
+    );
+  };
+
+  const calculateCosts = () => {
+    const pricing = IMPLANT_PRICING || {};
+    const implantBase = pricing.singleImplant || { low: 3000, high: 5000 };
+    const crownCost = pricing.crown || { low: 1200, high: 2000 };
+    const boneGraft = pricing.boneGraft || { low: 500, high: 3000 };
+    const sinusLift = pricing.sinusLift || { low: 1500, high: 3500 };
+    const extraction = pricing.extraction || { low: 200, high: 600 };
+    const sedation = pricing.ivSedation || { low: 300, high: 800 };
+
+    let multiplier = 1;
+    if (teethCount === "multiple") multiplier = 2.5;
+    else if (teethCount === "several") multiplier = 5;
+    else if (teethCount === "full") multiplier = 6;
+
+    const locationMult = location === "both" ? 2 : 1;
+
+    let items = [];
+    items.push({
+      name: `Dental Implant(s)`,
+      low: Math.round(implantBase.low * multiplier * locationMult),
+      high: Math.round(implantBase.high * multiplier * locationMult),
+    });
+    items.push({
+      name: `Crown / Prosthetic`,
+      low: Math.round(crownCost.low * multiplier * locationMult),
+      high: Math.round(crownCost.high * multiplier * locationMult),
+    });
+
+    if (additionalNeeds.includes("bone_grafting") || boneCondition === "moderate" || boneCondition === "significant") {
+      const bMult = boneCondition === "significant" ? 2 : 1;
+      items.push({
+        name: "Bone Grafting",
+        low: Math.round(boneGraft.low * bMult * locationMult),
+        high: Math.round(boneGraft.high * bMult * locationMult),
+      });
+    }
+    if (additionalNeeds.includes("sinus_lift")) {
+      items.push({ name: "Sinus Lift", low: sinusLift.low, high: sinusLift.high });
+    }
+    if (additionalNeeds.includes("extractions")) {
+      items.push({
+        name: "Tooth Extractions",
+        low: Math.round(extraction.low * multiplier),
+        high: Math.round(extraction.high * multiplier),
+      });
+    }
+    if (additionalNeeds.includes("iv_sedation")) {
+      items.push({ name: "IV Sedation", low: sedation.low, high: sedation.high });
+    }
+
+    const totalLow = items.reduce((s, x) => s + x.low, 0);
+    const totalHigh = items.reduce((s, x) => s + x.high, 0);
+
+    return { items, totalLow, totalHigh };
+  };
+
+  const costs = showResults ? calculateCosts() : null;
+
+  return (
+    <div className="calculator">
+      {!showResults ? (
+        <>
+          <div className="calc-step-indicator">Step {step} of 4</div>
+
+          {step === 1 && (
+            <div className="calc-step">
+              <h3>How many teeth need replacement?</h3>
+              <div className="visual-selector">
+                {teethOptions.map((opt) => (
+                  <div
+                    key={opt.value}
+                    className={`visual-option ${teethCount === opt.value ? "selected" : ""}`}
+                    onClick={() => setTeethCount(opt.value)}
+                  >
+                    <span className="visual-option-icon">{opt.icon}</span>
+                    <span>{opt.label}</span>
                   </div>
-                  <div className="faq-answer"><p>{faq.a}</p></div>
+                ))}
+              </div>
+              <div className="wizard-nav">
+                <span></span>
+                <button className="btn-primary" disabled={!teethCount} onClick={() => setStep(2)}>Next</button>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="calc-step">
+              <h3>Where are the missing teeth?</h3>
+              <div className="visual-selector">
+                {locationOptions.map((opt) => (
+                  <div
+                    key={opt.value}
+                    className={`visual-option ${location === opt.value ? "selected" : ""}`}
+                    onClick={() => setLocation(opt.value)}
+                  >
+                    <span>{opt.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="wizard-nav">
+                <button className="btn-secondary" onClick={() => setStep(1)}>Back</button>
+                <button className="btn-primary" disabled={!location} onClick={() => setStep(3)}>Next</button>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="calc-step">
+              <h3>What is your bone condition?</h3>
+              <div className="visual-selector">
+                {boneOptions.map((opt) => (
+                  <div
+                    key={opt.value}
+                    className={`visual-option ${boneCondition === opt.value ? "selected" : ""}`}
+                    onClick={() => setBoneCondition(opt.value)}
+                  >
+                    <strong>{opt.label}</strong>
+                    <span className="option-desc">{opt.desc}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="wizard-nav">
+                <button className="btn-secondary" onClick={() => setStep(2)}>Back</button>
+                <button className="btn-primary" disabled={!boneCondition} onClick={() => setStep(4)}>Next</button>
+              </div>
+            </div>
+          )}
+
+          {step === 4 && (
+            <div className="calc-step">
+              <h3>Any additional procedures needed?</h3>
+              <div className="addon-checkboxes">
+                {addOns.map((a) => (
+                  <label key={a.value} className="addon-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={additionalNeeds.includes(a.value)}
+                      onChange={() => toggleAddOn(a.value)}
+                    />
+                    <span>{a.label}</span>
+                  </label>
+                ))}
+              </div>
+              <div className="wizard-nav">
+                <button className="btn-secondary" onClick={() => setStep(3)}>Back</button>
+                <button className="btn-primary" onClick={() => setShowResults(true)}>Calculate</button>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="calc-results">
+          <h3>Your Estimated Cost</h3>
+          <div className="cost-breakdown">
+            {costs.items.map((item, i) => (
+              <div key={i} className="cost-line">
+                <span className="cost-label">{item.name}</span>
+                <span className="cost-value">${item.low.toLocaleString()} — ${item.high.toLocaleString()}</span>
+              </div>
+            ))}
+            <div className="cost-line cost-total">
+              <span className="cost-label">Estimated Total</span>
+              <span className="cost-value">${costs.totalLow.toLocaleString()} — ${costs.totalHigh.toLocaleString()}</span>
+            </div>
+          </div>
+          <div className="financing-note">
+            <p><strong>Financing Available:</strong> As low as ${Math.round(costs.totalLow / 60).toLocaleString()}/month with CareCredit (60 months, 0% promo APR).</p>
+          </div>
+          <div className="calc-disclaimer">
+            <p>* These are estimates only. Actual costs may vary based on individual needs, complexity, and insurance coverage. A comprehensive consultation with 3D imaging is required for an exact quote.</p>
+          </div>
+          <div className="calc-actions">
+            <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              Get Exact Quote
+            </button>
+            <button className="btn-secondary" onClick={() => { setShowResults(false); setStep(1); setTeethCount(null); setLocation(null); setBoneCondition(null); setAdditionalNeeds([]); }}>
+              Recalculate
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AllOnFourCalculator() {
+  const [archSelection, setArchSelection] = useState(null);
+  const [currentStatus, setCurrentStatus] = useState(null);
+  const [material, setMaterial] = useState(null);
+  const [additionalProc, setAdditionalProc] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+
+  const archOptions = [
+    { label: "Upper Arch Only", value: "upper" },
+    { label: "Lower Arch Only", value: "lower" },
+    { label: "Both Arches", value: "both" },
+  ];
+  const statusOptions = [
+    { label: "Some Teeth Remaining", value: "some" },
+    { label: "All Teeth Missing", value: "missing" },
+    { label: "Current Denture Wearer", value: "denture" },
+  ];
+  const materialOptions = [
+    { label: "Acrylic (PMMA)", value: "acrylic", desc: "Most affordable, good aesthetics", low: 18000, high: 22000 },
+    { label: "Zirconia Hybrid", value: "zirconia_hybrid", desc: "Premium strength & beauty", low: 25000, high: 32000 },
+    { label: "Full Zirconia", value: "full_zirconia", desc: "Ultimate durability & aesthetics", low: 30000, high: 38000 },
+  ];
+  const addOnOptions = [
+    { label: "Remaining Tooth Extractions", value: "extractions" },
+    { label: "Bone Grafting", value: "bone_grafting" },
+    { label: "Sinus Lift(s)", value: "sinus_lift" },
+    { label: "IV Sedation / General Anesthesia", value: "sedation" },
+    { label: "Temporary Prosthesis (same-day teeth)", value: "temporary" },
+  ];
+
+  const toggleAddOn = (val) => {
+    setAdditionalProc((prev) =>
+      prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]
+    );
+  };
+
+  const calculateCosts = () => {
+    const mat = materialOptions.find((m) => m.value === material) || materialOptions[0];
+    const archMult = archSelection === "both" ? 2 : 1;
+    let items = [];
+
+    items.push({
+      name: `All-on-4 Implants & Prosthesis (${mat.label})`,
+      low: mat.low * archMult,
+      high: mat.high * archMult,
+    });
+
+    if (additionalProc.includes("extractions") || currentStatus === "some") {
+      items.push({ name: "Tooth Extractions", low: 800 * archMult, high: 2500 * archMult });
+    }
+    if (additionalProc.includes("bone_grafting")) {
+      items.push({ name: "Bone Grafting", low: 1000 * archMult, high: 4000 * archMult });
+    }
+    if (additionalProc.includes("sinus_lift")) {
+      items.push({ name: "Sinus Lift", low: 1500, high: 3500 });
+    }
+    if (additionalProc.includes("sedation")) {
+      items.push({ name: "IV Sedation / Anesthesia", low: 500, high: 1200 });
+    }
+    if (additionalProc.includes("temporary")) {
+      items.push({ name: "Temporary Same-Day Prosthesis", low: 1500 * archMult, high: 3000 * archMult });
+    }
+
+    const totalLow = items.reduce((s, x) => s + x.low, 0);
+    const totalHigh = items.reduce((s, x) => s + x.high, 0);
+
+    return { items, totalLow, totalHigh };
+  };
+
+  const costs = showResults ? calculateCosts() : null;
+
+  return (
+    <div className="calculator">
+      {!showResults ? (
+        <div className="calc-step">
+          <div className="calc-field">
+            <h3>Select Arch(es)</h3>
+            <div className="visual-selector">
+              {archOptions.map((opt) => (
+                <div key={opt.value} className={`visual-option ${archSelection === opt.value ? "selected" : ""}`} onClick={() => setArchSelection(opt.value)}>
+                  <span>{opt.label}</span>
                 </div>
               ))}
             </div>
           </div>
+
+          <div className="calc-field">
+            <h3>Current Dental Status</h3>
+            <div className="visual-selector">
+              {statusOptions.map((opt) => (
+                <div key={opt.value} className={`visual-option ${currentStatus === opt.value ? "selected" : ""}`} onClick={() => setCurrentStatus(opt.value)}>
+                  <span>{opt.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="calc-field">
+            <h3>Prosthesis Material</h3>
+            <div className="visual-selector">
+              {materialOptions.map((opt) => (
+                <div key={opt.value} className={`visual-option material-option ${material === opt.value ? "selected" : ""}`} onClick={() => setMaterial(opt.value)}>
+                  <strong>{opt.label}</strong>
+                  <span className="option-desc">{opt.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="calc-field">
+            <h3>Additional Procedures</h3>
+            <div className="addon-checkboxes">
+              {addOnOptions.map((a) => (
+                <label key={a.value} className="addon-checkbox">
+                  <input type="checkbox" checked={additionalProc.includes(a.value)} onChange={() => toggleAddOn(a.value)} />
+                  <span>{a.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="wizard-nav">
+            <span></span>
+            <button className="btn-primary" disabled={!archSelection || !currentStatus || !material} onClick={() => setShowResults(true)}>
+              Calculate
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      ) : (
+        <div className="calc-results">
+          <h3>Your All-on-4 Cost Estimate</h3>
+          <div className="cost-breakdown">
+            {costs.items.map((item, i) => (
+              <div key={i} className="cost-line">
+                <span className="cost-label">{item.name}</span>
+                <span className="cost-value">${item.low.toLocaleString()} — ${item.high.toLocaleString()}</span>
+              </div>
+            ))}
+            <div className="cost-line cost-total">
+              <span className="cost-label">Estimated Total</span>
+              <span className="cost-value">${costs.totalLow.toLocaleString()} — ${costs.totalHigh.toLocaleString()}</span>
+            </div>
+          </div>
+          <div className="comparison-mini">
+            <h4>Comparison</h4>
+            <div className="cost-line">
+              <span className="cost-label">Traditional Dentures (per arch)</span>
+              <span className="cost-value">$1,000 — $3,000</span>
+            </div>
+            <div className="cost-line">
+              <span className="cost-label">Individual Implants (per arch, 6-8)</span>
+              <span className="cost-value">$30,000 — $60,000+</span>
+            </div>
+          </div>
+          <div className="financing-note">
+            <p><strong>Financing Available:</strong> As low as ${Math.round(costs.totalLow / 60).toLocaleString()}/month with CareCredit.</p>
+          </div>
+          <div className="calc-disclaimer">
+            <p>* Estimates only. Actual costs depend on individual clinical needs. Schedule a consultation for an exact quote.</p>
+          </div>
+          <div className="calc-actions">
+            <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>Get Exact Quote</button>
+            <button className="btn-secondary" onClick={() => { setShowResults(false); setArchSelection(null); setCurrentStatus(null); setMaterial(null); setAdditionalProc([]); }}>Recalculate</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
-function PatientInfo() {
+function WisdomTeethCalculator() {
+  const [teeth, setTeeth] = useState([
+    { id: 1, label: "Upper Right (#1)", level: "" },
+    { id: 2, label: "Upper Left (#16)", level: "" },
+    { id: 3, label: "Lower Left (#17)", level: "" },
+    { id: 4, label: "Lower Right (#32)", level: "" },
+  ]);
+  const [sedationType, setSedationType] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const impactionLevels = [
+    { label: "Not Removing", value: "" },
+    { label: "Erupted", value: "erupted" },
+    { label: "Soft Tissue Impaction", value: "soft_tissue" },
+    { label: "Partial Bony Impaction", value: "partial_bony" },
+    { label: "Full Bony Impaction", value: "full_bony" },
+  ];
+
+  const sedationTypes = [
+    { label: "Local Anesthesia", value: "local", low: 0, high: 0 },
+    { label: "Nitrous Oxide + Local", value: "nitrous", low: 75, high: 150 },
+    { label: "IV Sedation", value: "iv", low: 300, high: 800 },
+    { label: "General Anesthesia", value: "general", low: 800, high: 1500 },
+  ];
+
+  const setToothLevel = (id, level) => {
+    setTeeth((prev) => prev.map((t) => (t.id === id ? { ...t, level } : t)));
+  };
+
+  const calculateCosts = () => {
+    const pricing = {
+      erupted: { low: 150, high: 350 },
+      soft_tissue: { low: 250, high: 500 },
+      partial_bony: { low: 350, high: 650 },
+      full_bony: { low: 450, high: 800 },
+    };
+
+    let items = [];
+    teeth.forEach((t) => {
+      if (t.level && pricing[t.level]) {
+        items.push({
+          name: `${t.label} — ${impactionLevels.find((l) => l.value === t.level)?.label}`,
+          low: pricing[t.level].low,
+          high: pricing[t.level].high,
+        });
+      }
+    });
+
+    const sed = sedationTypes.find((s) => s.value === sedationType);
+    if (sed && (sed.low > 0 || sed.high > 0)) {
+      items.push({ name: `Sedation: ${sed.label}`, low: sed.low, high: sed.high });
+    }
+
+    const totalLow = items.reduce((s, x) => s + x.low, 0);
+    const totalHigh = items.reduce((s, x) => s + x.high, 0);
+    return { items, totalLow, totalHigh };
+  };
+
+  const costs = showResults ? calculateCosts() : null;
+  const teethSelected = teeth.some((t) => t.level !== "");
+
   return (
-    <section className="section" id="patient-info">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Patient Resources</div>
-          <h2 className="section-title">Patient Information</h2>
-          <p className="section-subtitle">
-            Everything you need to know before, during, and after your visit to Galleria Oral Surgery.
-          </p>
+    <div className="calculator">
+      {!showResults ? (
+        <div className="calc-step">
+          <h3>Select Impaction Level for Each Tooth</h3>
+          <div className="wisdom-teeth-grid">
+            {teeth.map((t) => (
+              <div key={t.id} className="wisdom-tooth-card">
+                <h4>{t.label}</h4>
+                <select className="form-input" value={t.level} onChange={(e) => setToothLevel(t.id, e.target.value)}>
+                  {impactionLevels.map((l) => (
+                    <option key={l.value} value={l.value}>{l.label}</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+
+          <div className="calc-field" style={{ marginTop: "1.5rem" }}>
+            <h3>Sedation Type</h3>
+            <div className="visual-selector">
+              {sedationTypes.map((s) => (
+                <div key={s.value} className={`visual-option ${sedationType === s.value ? "selected" : ""}`} onClick={() => setSedationType(s.value)}>
+                  <strong>{s.label}</strong>
+                  {s.low > 0 && <span className="option-desc">${s.low} — ${s.high}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="wizard-nav">
+            <span></span>
+            <button className="btn-primary" disabled={!teethSelected} onClick={() => setShowResults(true)}>Calculate</button>
+          </div>
         </div>
-        <div className="info-cards fade-in">
-          <div className="info-card">
-            <h3><span className="card-icon">\u2726</span> Your First Visit</h3>
-            <p>Your initial consultation includes a comprehensive evaluation, 3D imaging as needed, diagnosis, and a personalized treatment plan. Please bring:</p>
-            <ul>
-              <li>Photo ID and insurance card</li>
-              <li>Referral and X-rays from your dentist</li>
-              <li>List of current medications</li>
-              <li>Completed patient forms (available online)</li>
-              <li>A responsible adult driver if sedation is planned</li>
-            </ul>
+      ) : (
+        <div className="calc-results">
+          <h3>Your Wisdom Teeth Removal Estimate</h3>
+          <div className="cost-breakdown">
+            {costs.items.map((item, i) => (
+              <div key={i} className="cost-line">
+                <span className="cost-label">{item.name}</span>
+                <span className="cost-value">${item.low.toLocaleString()} — ${item.high.toLocaleString()}</span>
+              </div>
+            ))}
+            <div className="cost-line cost-total">
+              <span className="cost-label">Estimated Total</span>
+              <span className="cost-value">${costs.totalLow.toLocaleString()} — ${costs.totalHigh.toLocaleString()}</span>
+            </div>
           </div>
-          <div className="info-card">
-            <h3><span className="card-icon">\u2726</span> Insurance & Financing</h3>
-            <p>We work with you to maximize your insurance benefits and make treatment affordable.</p>
-            <ul>
-              <li>Most major dental & medical insurance accepted</li>
-              <li>Insurance verification before your appointment</li>
-              <li>CareCredit financing available</li>
-              <li>In-office payment plans for qualified patients</li>
-              <li>Transparent pricing with no hidden fees</li>
-              <li>Complimentary implant consultations</li>
-            </ul>
+          <div className="calc-disclaimer">
+            <p>* Estimates based on typical fees. Actual costs vary by complexity, insurance coverage, and clinical findings. X-rays are required for a precise quote.</p>
           </div>
-          <div className="info-card">
-            <h3><span className="card-icon">\u2726</span> Pre-Operative Instructions</h3>
-            <ul>
-              <li>No eating or drinking 8 hours before IV sedation</li>
-              <li>Wear comfortable, loose-fitting clothing</li>
-              <li>Remove jewelry, contacts, and nail polish</li>
-              <li>Arrange a responsible adult to drive you home</li>
-              <li>Take prescribed pre-medications as directed</li>
-              <li>Inform us of any illness before surgery</li>
-            </ul>
+          <div className="calc-actions">
+            <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>Get Exact Quote</button>
+            <button className="btn-secondary" onClick={() => { setShowResults(false); setTeeth(teeth.map((t) => ({ ...t, level: "" }))); setSedationType(""); }}>Recalculate</button>
           </div>
-          <div className="info-card">
-            <h3><span className="card-icon">\u2726</span> Post-Operative Care</h3>
-            <ul>
-              <li>Bite on gauze for 30\u201345 minutes after surgery</li>
-              <li>Apply ice packs: 20 minutes on, 20 minutes off</li>
-              <li>Soft diet for the first 3\u20137 days</li>
-              <li>Take medications as prescribed</li>
-              <li>No straws, smoking, or vigorous rinsing for 24 hours</li>
-              <li>Gentle salt water rinses starting day 2</li>
-              <li>Call us with any concerns: {PRACTICE.phone}</li>
-            </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FinancingCalculator() {
+  const [totalCost, setTotalCost] = useState(10000);
+  const [term, setTerm] = useState(24);
+  const terms = [12, 24, 36, 48, 60];
+  const promoAPR = 0;
+  const standardAPR = 14.9;
+
+  const monthlyPromo = totalCost / term;
+  const monthlyStandard = (totalCost * (standardAPR / 100 / 12) * Math.pow(1 + standardAPR / 100 / 12, term)) / (Math.pow(1 + standardAPR / 100 / 12, term) - 1);
+  const totalInterest = monthlyStandard * term - totalCost;
+
+  return (
+    <div className="calculator">
+      <div className="calc-step">
+        <h3>Treatment Cost</h3>
+        <div className="financing-input-wrap">
+          <div className="financing-slider-row">
+            <span>$1,000</span>
+            <input
+              type="range"
+              min="1000"
+              max="80000"
+              step="500"
+              value={totalCost}
+              onChange={(e) => setTotalCost(Number(e.target.value))}
+              className="financing-slider"
+            />
+            <span>$80,000</span>
           </div>
+          <div className="financing-amount">
+            <label>Total Amount:</label>
+            <input
+              type="number"
+              className="form-input financing-input"
+              min="1000"
+              max="80000"
+              value={totalCost}
+              onChange={(e) => setTotalCost(Math.max(1000, Math.min(80000, Number(e.target.value))))}
+            />
+          </div>
+        </div>
+
+        <h3 style={{ marginTop: "1.5rem" }}>Payment Term</h3>
+        <div className="visual-selector">
+          {terms.map((t) => (
+            <div key={t} className={`visual-option ${term === t ? "selected" : ""}`} onClick={() => setTerm(t)}>
+              <strong>{t} months</strong>
+              <span className="option-desc">{(t / 12).toFixed(1)} years</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="financing-results">
+          <div className="financing-result-card promo">
+            <h4>0% Promotional APR*</h4>
+            <div className="payment-amount">${monthlyPromo.toFixed(2)}<span>/month</span></div>
+            <p>Total: ${totalCost.toLocaleString()} over {term} months</p>
+            <p className="promo-note">*Subject to credit approval. Promotional period varies.</p>
+          </div>
+          <div className="financing-result-card standard">
+            <h4>Standard APR ({standardAPR}%)</h4>
+            <div className="payment-amount">${monthlyStandard.toFixed(2)}<span>/month</span></div>
+            <p>Total: ${(monthlyStandard * term).toFixed(2)} ({term} months)</p>
+            <p>Total interest: ${totalInterest.toFixed(2)}</p>
+          </div>
+        </div>
+
+        <div className="payment-breakdown">
+          <h4>Payment Breakdown (0% APR)</h4>
+          <div className="breakdown-bar">
+            <div className="breakdown-principal" style={{ width: "100%" }}>
+              Principal: ${totalCost.toLocaleString()}
+            </div>
+          </div>
+          <h4 style={{ marginTop: "1rem" }}>Payment Breakdown ({standardAPR}% APR)</h4>
+          <div className="breakdown-bar">
+            <div className="breakdown-principal" style={{ width: `${(totalCost / (monthlyStandard * term)) * 100}%` }}>
+              Principal
+            </div>
+            <div className="breakdown-interest" style={{ width: `${(totalInterest / (monthlyStandard * term)) * 100}%` }}>
+              Interest
+            </div>
+          </div>
+        </div>
+
+        <div className="carecredit-info">
+          <h4>💳 CareCredit Financing</h4>
+          <p>We accept CareCredit, a healthcare credit card that offers special financing on dental procedures. Apply online or in our office.</p>
+          <ul>
+            <li>6, 12, 18, and 24-month promotional financing available</li>
+            <li>Extended plans up to 60 months with reduced APR</li>
+            <li>Quick application with instant decision</li>
+            <li>Use for the whole family</li>
+          </ul>
+        </div>
+
+        <div className="calc-disclaimer">
+          <p>* Payment estimates are for illustrative purposes only. Actual terms, APR, and approval are determined by the financing provider. Not all patients will qualify for promotional financing.</p>
+        </div>
+        <div className="calc-actions">
+          <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>Get Exact Quote</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── 11. KnowledgeBase ─── */
+function KnowledgeBaseSection({ showArticle, setShowArticle }) {
+  const [ref, isVisible] = useIntersectionObserver();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "Dental Implants", "Full Mouth", "Wisdom Teeth", "Bone Grafting", "Jaw Surgery", "General"];
+
+  const filteredArticles = (KNOWLEDGE_BASE || []).filter((article) => {
+    const matchesCategory = activeCategory === "All" || article.category === activeCategory;
+    const q = searchQuery.toLowerCase();
+    const matchesSearch =
+      !q ||
+      article.title.toLowerCase().includes(q) ||
+      (article.content || "").toLowerCase().includes(q) ||
+      (article.tags || []).some((tag) => tag.toLowerCase().includes(q));
+    return matchesCategory && matchesSearch;
+  });
+
+  const featuredArticles = (KNOWLEDGE_BASE || []).filter((a) => a.featured).slice(0, 3);
+
+  if (showArticle) {
+    const article = (KNOWLEDGE_BASE || []).find((a) => a.id === showArticle);
+    if (!article) {
+      setShowArticle(null);
+      return null;
+    }
+    const relatedArticles = (KNOWLEDGE_BASE || [])
+      .filter((a) => a.id !== article.id && a.category === article.category)
+      .slice(0, 3);
+
+    return (
+      <section className="section kb-section" id="knowledge-base">
+        <div className="section-inner">
+          <button className="btn-back" onClick={() => setShowArticle(null)}>← Back to Knowledge Base</button>
+          <div className="article-full">
+            <div className="article-header">
+              <span className="article-category-badge">{article.category}</span>
+              {article.readTime && <span className="article-read-time">📖 {article.readTime} min read</span>}
+            </div>
+            <h2 className="article-title">{article.title}</h2>
+            <div className="article-body">
+              {(article.content || "").split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+            {article.keyFacts && article.keyFacts.length > 0 && (
+              <div className="key-facts-box">
+                <h4>Key Facts</h4>
+                <ul>
+                  {article.keyFacts.map((fact, i) => (
+                    <li key={i}>{fact}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {article.references && article.references.length > 0 && (
+              <div className="references-section">
+                <h4>References</h4>
+                <ol>
+                  {article.references.map((r, i) => (
+                    <li key={i}>{r}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {relatedArticles.length > 0 && (
+              <div className="related-articles">
+                <h4>Related Articles</h4>
+                <div className="related-grid">
+                  {relatedArticles.map((ra) => (
+                    <div key={ra.id} className="related-card" onClick={() => setShowArticle(ra.id)}>
+                      <span className="related-category">{ra.category}</span>
+                      <h5>{ra.title}</h5>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="article-cta">
+              <h4>Have Questions?</h4>
+              <p>Schedule a consultation to discuss your specific situation with Dr. Antipov.</p>
+              <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+                Schedule Consultation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="section kb-section" id="knowledge-base" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Knowledge Base</h2>
+        <p className="section-subtitle">In-depth articles about oral surgery procedures, recovery, and care</p>
+
+        <div className="kb-search">
+          <input
+            type="text"
+            className="form-input kb-search-input"
+            placeholder="Search articles by title, content, or tags..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className="kb-categories">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`kb-category-btn ${activeCategory === cat ? "active" : ""}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {!searchQuery && activeCategory === "All" && featuredArticles.length > 0 && (
+          <div className="featured-section">
+            <h3 className="sub-heading">Featured Articles</h3>
+            <div className="featured-grid">
+              {featuredArticles.map((article) => (
+                <div key={article.id} className="article-card featured" onClick={() => setShowArticle(article.id)}>
+                  <span className="article-category-badge">{article.category}</span>
+                  <h4>{article.title}</h4>
+                  {article.readTime && <span className="article-read-time">📖 {article.readTime} min read</span>}
+                  <p className="article-preview">{(article.content || "").slice(0, 100)}...</p>
+                  {article.tags && (
+                    <div className="article-tags">
+                      {article.tags.slice(0, 3).map((tag, i) => (
+                        <span key={i} className="article-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="kb-grid">
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((article) => (
+              <div key={article.id} className="article-card" onClick={() => setShowArticle(article.id)}>
+                <span className="article-category-badge">{article.category}</span>
+                <h4>{article.title}</h4>
+                {article.readTime && <span className="article-read-time">📖 {article.readTime} min read</span>}
+                <p className="article-preview">{(article.content || "").slice(0, 100)}...</p>
+                {article.tags && (
+                  <div className="article-tags">
+                    {article.tags.slice(0, 3).map((tag, i) => (
+                      <span key={i} className="article-tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="no-results">
+              <p>No articles found matching your search. Try different keywords or browse by category.</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
 }
 
-function ReferralSection() {
-  const [form, setForm] = useState({
-    doctorName: "", practiceName: "", doctorPhone: "", doctorEmail: "",
-    patientName: "", patientDob: "", patientPhone: "",
-    reason: "", urgency: "Routine", notes: "",
+/* ─── 12. BeforeAfterGallery ─── */
+function BeforeAfterGallery() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const cases = [
+    { id: 1, category: "Dental Implants", title: "Single Implant - Front Tooth", desc: "Patient received a single dental implant to replace a missing front tooth." },
+    { id: 2, category: "Dental Implants", title: "Multiple Implant Restoration", desc: "Three adjacent missing teeth replaced with implant-supported bridge." },
+    { id: 3, category: "Dental Implants", title: "Implant with Bone Graft", desc: "Implant placed after bone grafting procedure to restore jaw volume." },
+    { id: 4, category: "All-on-4", title: "Full Upper Arch Restoration", desc: "Complete upper arch restored with All-on-4 implant-supported prosthesis." },
+    { id: 5, category: "All-on-4", title: "Full Mouth Reconstruction", desc: "Both arches restored with All-on-4 treatment for a complete smile makeover." },
+    { id: 6, category: "Wisdom Teeth", title: "Impacted Wisdom Tooth Removal", desc: "Surgical extraction of horizontally impacted lower wisdom tooth." },
+    { id: 7, category: "Wisdom Teeth", title: "Four Wisdom Teeth Extraction", desc: "All four wisdom teeth removed in a single visit under IV sedation." },
+    { id: 8, category: "Jaw Surgery", title: "Corrective Jaw Surgery", desc: "Orthognathic surgery to correct significant underbite and improve function." },
+  ];
+
+  const gradients = [
+    "linear-gradient(135deg, #1a365d, #2b6cb0)",
+    "linear-gradient(135deg, #2b6cb0, #4299e1)",
+    "linear-gradient(135deg, #1a365d, #667eea)",
+    "linear-gradient(135deg, #b7791f, #d69e2e)",
+    "linear-gradient(135deg, #2b6cb0, #38b2ac)",
+    "linear-gradient(135deg, #553c9a, #805ad5)",
+    "linear-gradient(135deg, #2f855a, #48bb78)",
+    "linear-gradient(135deg, #c53030, #e53e3e)",
+  ];
+
+  const icons = {
+    "Dental Implants": "🦷",
+    "All-on-4": "✨",
+    "Wisdom Teeth": "🦷",
+    "Jaw Surgery": "🏥",
+  };
+
+  return (
+    <section className="section gallery-section" id="before-after" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Before &amp; After Gallery</h2>
+        <p className="section-subtitle">See real results from our patients (photos available during consultation)</p>
+
+        <div className="gallery-grid">
+          {cases.map((c, i) => (
+            <div key={c.id} className="gallery-card">
+              <div className="gallery-image-placeholder" style={{ background: gradients[i % gradients.length] }}>
+                <span className="gallery-icon">{icons[c.category] || "📷"}</span>
+                <div className="gallery-slider-ui">
+                  <span className="slider-label-left">Before</span>
+                  <div className="slider-divider"></div>
+                  <span className="slider-label-right">After</span>
+                </div>
+              </div>
+              <div className="gallery-card-body">
+                <span className="gallery-category">{c.category}</span>
+                <h4>{c.title}</h4>
+                <p>{c.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="gallery-disclaimer">
+          <p>* Results may vary. Photos shown during in-person consultation. Individual outcomes depend on clinical factors and patient compliance with post-operative instructions.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 13. PatientInfo ─── */
+function PatientInfo() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const cards = [
+    {
+      title: "First Visit",
+      icon: "📋",
+      description: "What to expect during your initial consultation, including exam, imaging, and treatment planning.",
+      items: ["Comprehensive oral exam", "3D CBCT imaging", "Treatment plan discussion", "Cost estimate & financing options"],
+      formLabel: "New Patient Forms",
+    },
+    {
+      title: "Insurance & Financing",
+      icon: "💳",
+      description: "We accept most major insurance plans and offer flexible financing options.",
+      items: ["Most PPO insurance accepted", "CareCredit financing", "In-house payment plans", "Submit claims on your behalf"],
+      formLabel: "Insurance Verification Form",
+    },
+    {
+      title: "Pre-Op Instructions",
+      icon: "📝",
+      description: "Important instructions to follow before your oral surgery procedure.",
+      items: ["Fasting guidelines for sedation", "Medication adjustments", "Arrange a ride home", "Wear comfortable clothing"],
+      formLabel: "Pre-Op Checklist",
+    },
+    {
+      title: "Post-Op Care",
+      icon: "🩹",
+      description: "Recovery guidelines to ensure optimal healing after your procedure.",
+      items: ["Pain management tips", "Diet recommendations", "Activity restrictions", "When to call the office"],
+      formLabel: "Post-Op Instructions",
+    },
+  ];
+
+  return (
+    <section className="section patient-section" id="patient-info" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Patient Information</h2>
+        <p className="section-subtitle">Everything you need to prepare for your visit</p>
+
+        <div className="patient-grid">
+          {cards.map((card, i) => (
+            <div key={i} className="patient-card">
+              <span className="patient-card-icon">{card.icon}</span>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <ul className="patient-list">
+                {card.items.map((item, j) => (
+                  <li key={j}>{item}</li>
+                ))}
+              </ul>
+              <button className="btn-outline-sm">📥 Download {card.formLabel}</button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 14. ReferralForm ─── */
+function ReferralForm() {
+  const [ref, isVisible] = useIntersectionObserver();
+  const [formData, setFormData] = useState({
+    doctorName: "",
+    practiceName: "",
+    doctorPhone: "",
+    doctorEmail: "",
+    patientName: "",
+    patientDOB: "",
+    patientPhone: "",
+    reason: "",
+    urgency: "Routine",
+    notes: "",
   });
-  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
   const validate = () => {
     const errs = {};
-    if (!form.doctorName.trim()) errs.doctorName = "Required";
-    if (!form.practiceName.trim()) errs.practiceName = "Required";
-    if (!form.doctorPhone.trim()) errs.doctorPhone = "Required";
-    if (!form.doctorEmail.trim()) errs.doctorEmail = "Required";
-    if (!form.patientName.trim()) errs.patientName = "Required";
-    if (!form.reason) errs.reason = "Required";
+    if (!formData.doctorName.trim()) errs.doctorName = "Required";
+    if (!formData.practiceName.trim()) errs.practiceName = "Required";
+    if (!formData.doctorPhone.trim()) errs.doctorPhone = "Required";
+    if (!formData.doctorEmail.trim()) errs.doctorEmail = "Required";
+    else if (!/\S+@\S+\.\S+/.test(formData.doctorEmail)) errs.doctorEmail = "Invalid email";
+    if (!formData.patientName.trim()) errs.patientName = "Required";
+    if (!formData.patientDOB.trim()) errs.patientDOB = "Required";
+    if (!formData.patientPhone.trim()) errs.patientPhone = "Required";
+    if (!formData.reason) errs.reason = "Please select a reason";
     return errs;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const errs = validate();
-    setErrors(errs);
-    if (Object.keys(errs).length === 0) {
-      console.log("Referral submitted:", form);
-      setSubmitted(true);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
     }
-  };
-
-  const handleChange = (field) => (e) => {
-    setForm((f) => ({ ...f, [field]: e.target.value }));
-    if (errors[field]) setErrors((er) => ({ ...er, [field]: undefined }));
+    setSubmitted(true);
   };
 
   if (submitted) {
     return (
-      <section className="section section-gray" id="referral">
-        <div className="container">
-          <div className="form-section">
-            <div className="form-success">
-              <h3>Referral Received Successfully</h3>
-              <p>Thank you for your referral. Our team will contact the patient within one business day to schedule their appointment. A confirmation has been sent to your email.</p>
-              <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => { setSubmitted(false); setForm({ doctorName: "", practiceName: "", doctorPhone: "", doctorEmail: "", patientName: "", patientDob: "", patientPhone: "", reason: "", urgency: "Routine", notes: "" }); }}>Submit Another Referral</button>
-            </div>
+      <section className="section referral-section" id="referral-form">
+        <div className="section-inner">
+          <div className="success-message">
+            <span className="success-icon">✅</span>
+            <h3>Referral Submitted Successfully!</h3>
+            <p>Thank you for your referral, Dr. {formData.doctorName}. We will contact the patient within 1 business day to schedule an appointment.</p>
+            <button className="btn-primary" onClick={() => { setSubmitted(false); setFormData({ doctorName: "", practiceName: "", doctorPhone: "", doctorEmail: "", patientName: "", patientDOB: "", patientPhone: "", reason: "", urgency: "Routine", notes: "" }); }}>
+              Submit Another Referral
+            </button>
           </div>
         </div>
       </section>
@@ -775,126 +1627,148 @@ function ReferralSection() {
   }
 
   return (
-    <section className="section section-gray" id="referral">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 For Referring Doctors</div>
-          <h2 className="section-title">Refer a Patient</h2>
-          <p className="section-subtitle">
-            Galleria Oral Surgery values our relationships with referring dental professionals.
-            We provide prompt scheduling, excellent outcomes, and timely communication on every referral.
-          </p>
-        </div>
-        <div className="form-section fade-in">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20, marginBottom: 40, textAlign: "center" }}>
-            {[
-              ["\u2726", "Same-Day Scheduling", "We contact referred patients within 24 hours"],
-              ["\u2726", "Detailed Reports", "Treatment plans and post-op reports sent promptly"],
-              ["\u2726", "Full Scope OMS", "One referral destination for all oral surgery needs"],
-            ].map(([icon, title, desc]) => (
-              <div key={title} style={{ padding: 20 }}>
-                <div style={{ color: "var(--gold)", fontSize: "1.5rem", marginBottom: 8 }}>{icon}</div>
-                <h4 style={{ fontFamily: "var(--font-heading)", fontSize: ".95rem", color: "var(--navy)", marginBottom: 4 }}>{title}</h4>
-                <p style={{ fontSize: ".82rem", color: "var(--gray-600)" }}>{desc}</p>
-              </div>
-            ))}
-          </div>
-          <form onSubmit={handleSubmit}>
-            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.3rem", color: "var(--navy)", marginBottom: 20 }}>Online Referral Form</h3>
-            <div className="form-grid">
+    <section className="section referral-section" id="referral-form" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Doctor Referral Form</h2>
+        <p className="section-subtitle">Refer your patient for oral surgery — we'll take great care of them</p>
+
+        <form className="referral-form-grid" onSubmit={handleSubmit}>
+          <div className="form-section">
+            <h3>Referring Doctor Information</h3>
+            <div className="form-row">
               <div className="form-group">
-                <label className="form-label">Referring Doctor Name *</label>
-                <input className="form-input" value={form.doctorName} onChange={handleChange("doctorName")} placeholder="Dr. Jane Smith" style={errors.doctorName ? { borderColor: "#ef4444" } : {}} />
+                <label>Doctor Name *</label>
+                <input type="text" className={`form-input ${errors.doctorName ? "error" : ""}`} name="doctorName" value={formData.doctorName} onChange={handleChange} placeholder="Dr. Smith" />
+                {errors.doctorName && <span className="error-text">{errors.doctorName}</span>}
               </div>
               <div className="form-group">
-                <label className="form-label">Practice Name *</label>
-                <input className="form-input" value={form.practiceName} onChange={handleChange("practiceName")} placeholder="Smith Family Dentistry" style={errors.practiceName ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Office Phone *</label>
-                <input className="form-input" type="tel" value={form.doctorPhone} onChange={handleChange("doctorPhone")} placeholder="(916) 555-0000" style={errors.doctorPhone ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Office Email *</label>
-                <input className="form-input" type="email" value={form.doctorEmail} onChange={handleChange("doctorEmail")} placeholder="office@example.com" style={errors.doctorEmail ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Patient Name *</label>
-                <input className="form-input" value={form.patientName} onChange={handleChange("patientName")} placeholder="Patient full name" style={errors.patientName ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Patient Date of Birth</label>
-                <input className="form-input" type="date" value={form.patientDob} onChange={handleChange("patientDob")} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Patient Phone</label>
-                <input className="form-input" type="tel" value={form.patientPhone} onChange={handleChange("patientPhone")} placeholder="(916) 555-0000" />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Reason for Referral *</label>
-                <select className="form-select" value={form.reason} onChange={handleChange("reason")} style={errors.reason ? { borderColor: "#ef4444" } : {}}>
-                  <option value="">Select reason...</option>
-                  {REFERRAL_REASONS.map((r) => <option key={r} value={r}>{r}</option>)}
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="form-label">Urgency</label>
-                <select className="form-select" value={form.urgency} onChange={handleChange("urgency")}>
-                  <option value="Routine">Routine</option>
-                  <option value="Urgent">Urgent</option>
-                  <option value="Emergency">Emergency</option>
-                </select>
-              </div>
-              <div className="form-group full">
-                <label className="form-label">Clinical Notes / Additional Information</label>
-                <textarea className="form-textarea" value={form.notes} onChange={handleChange("notes")} placeholder="Include relevant clinical findings, radiograph details, medical history notes, etc." />
-              </div>
-              <div className="form-group full" style={{ background: "var(--gray-100)", border: "2px dashed var(--gray-200)", borderRadius: 8, padding: 24, textAlign: "center" }}>
-                <p style={{ color: "var(--gray-600)", fontSize: ".85rem" }}>
-                  Radiographs can be emailed to <a href="mailto:referrals@galleriaoralsurgery.com" style={{ color: "var(--gold)", fontWeight: 600 }}>referrals@galleriaoralsurgery.com</a> or sent via your practice management software.
-                </p>
+                <label>Practice Name *</label>
+                <input type="text" className={`form-input ${errors.practiceName ? "error" : ""}`} name="practiceName" value={formData.practiceName} onChange={handleChange} placeholder="Smith Family Dentistry" />
+                {errors.practiceName && <span className="error-text">{errors.practiceName}</span>}
               </div>
             </div>
-            <button type="submit" className="form-submit" style={{ marginTop: 16 }}>Submit Referral</button>
-          </form>
-        </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Phone *</label>
+                <input type="tel" className={`form-input ${errors.doctorPhone ? "error" : ""}`} name="doctorPhone" value={formData.doctorPhone} onChange={handleChange} placeholder="(916) 555-0100" />
+                {errors.doctorPhone && <span className="error-text">{errors.doctorPhone}</span>}
+              </div>
+              <div className="form-group">
+                <label>Email *</label>
+                <input type="email" className={`form-input ${errors.doctorEmail ? "error" : ""}`} name="doctorEmail" value={formData.doctorEmail} onChange={handleChange} placeholder="doctor@practice.com" />
+                {errors.doctorEmail && <span className="error-text">{errors.doctorEmail}</span>}
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Patient Information</h3>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Patient Name *</label>
+                <input type="text" className={`form-input ${errors.patientName ? "error" : ""}`} name="patientName" value={formData.patientName} onChange={handleChange} placeholder="John Doe" />
+                {errors.patientName && <span className="error-text">{errors.patientName}</span>}
+              </div>
+              <div className="form-group">
+                <label>Date of Birth *</label>
+                <input type="date" className={`form-input ${errors.patientDOB ? "error" : ""}`} name="patientDOB" value={formData.patientDOB} onChange={handleChange} />
+                {errors.patientDOB && <span className="error-text">{errors.patientDOB}</span>}
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Patient Phone *</label>
+                <input type="tel" className={`form-input ${errors.patientPhone ? "error" : ""}`} name="patientPhone" value={formData.patientPhone} onChange={handleChange} placeholder="(916) 555-0200" />
+                {errors.patientPhone && <span className="error-text">{errors.patientPhone}</span>}
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Referral Details</h3>
+            <div className="form-group">
+              <label>Reason for Referral *</label>
+              <select className={`form-input ${errors.reason ? "error" : ""}`} name="reason" value={formData.reason} onChange={handleChange}>
+                <option value="">Select reason...</option>
+                {REFERRAL_REASONS.map((r, i) => (
+                  <option key={i} value={r}>{r}</option>
+                ))}
+              </select>
+              {errors.reason && <span className="error-text">{errors.reason}</span>}
+            </div>
+            <div className="form-group">
+              <label>Urgency Level</label>
+              <div className="urgency-selector">
+                {["Routine", "Urgent", "Emergency"].map((u) => (
+                  <label key={u} className={`urgency-option ${formData.urgency === u ? "selected" : ""}`}>
+                    <input type="radio" name="urgency" value={u} checked={formData.urgency === u} onChange={handleChange} />
+                    <span>{u}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="form-group">
+              <label>Additional Notes</label>
+              <textarea className="form-input" name="notes" value={formData.notes} onChange={handleChange} rows="4" placeholder="Clinical findings, X-ray notes, special considerations..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" className="btn-primary full-width">Submit Referral</button>
+        </form>
       </div>
     </section>
   );
 }
 
+/* ─── 15. ContactForm ─── */
 function ContactForm() {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [ref, isVisible] = useIntersectionObserver();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    message: "",
+  });
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validate = () => {
+    const errs = {};
+    if (!formData.name.trim()) errs.name = "Name is required";
+    if (!formData.phone.trim()) errs.phone = "Phone is required";
+    if (!formData.email.trim()) errs.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) errs.email = "Invalid email address";
+    return errs;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errs = {};
-    if (!form.name.trim()) errs.name = "Required";
-    if (!form.phone.trim()) errs.phone = "Required";
-    setErrors(errs);
-    if (Object.keys(errs).length === 0) {
-      console.log("Patient contact submitted:", form);
-      setSubmitted(true);
+    const errs = validate();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
     }
-  };
-
-  const handleChange = (field) => (e) => {
-    setForm((f) => ({ ...f, [field]: e.target.value }));
-    if (errors[field]) setErrors((er) => ({ ...er, [field]: undefined }));
+    setSubmitted(true);
   };
 
   if (submitted) {
     return (
-      <section className="section" id="contact">
-        <div className="container">
-          <div className="form-section">
-            <div className="form-success">
-              <h3>Thank You for Contacting Us</h3>
-              <p>We have received your message and will contact you within one business day. For immediate needs, please call {PRACTICE.phone}.</p>
-              <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", service: "", message: "" }); }}>Send Another Message</button>
-            </div>
+      <section className="section contact-section" id="contact">
+        <div className="section-inner">
+          <div className="success-message">
+            <span className="success-icon">✅</span>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you, {formData.name}! We'll get back to you within 1 business day. For urgent matters, please call (916) 783-2110.</p>
+            <button className="btn-primary" onClick={() => { setSubmitted(false); setFormData({ name: "", phone: "", email: "", service: "", message: "" }); }}>
+              Send Another Message
+            </button>
           </div>
         </div>
       </section>
@@ -902,80 +1776,69 @@ function ContactForm() {
   }
 
   return (
-    <section className="section" id="contact">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Contact Us</div>
-          <h2 className="section-title">Schedule Your Consultation</h2>
-          <p className="section-subtitle">
-            Ready to take the next step? Contact Galleria Oral Surgery to schedule your
-            consultation with Dr. Antipov. We look forward to caring for you.
-          </p>
-        </div>
-        <div className="form-section fade-in">
-          <form onSubmit={handleSubmit}>
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Full Name *</label>
-                <input className="form-input" value={form.name} onChange={handleChange("name")} placeholder="Your full name" style={errors.name ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Phone Number *</label>
-                <input className="form-input" type="tel" value={form.phone} onChange={handleChange("phone")} placeholder="(916) 555-0000" style={errors.phone ? { borderColor: "#ef4444" } : {}} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input className="form-input" type="email" value={form.email} onChange={handleChange("email")} placeholder="you@example.com" />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Service of Interest</label>
-                <select className="form-select" value={form.service} onChange={handleChange("service")}>
-                  <option value="">Select a service...</option>
-                  <option>Dental Implants</option>
-                  <option>Wisdom Teeth Removal</option>
-                  <option>All-on-4 Full Arch Implants</option>
-                  <option>Bone Grafting</option>
-                  <option>Jaw Surgery</option>
-                  <option>Tooth Extraction</option>
-                  <option>TMJ Treatment</option>
-                  <option>Oral Pathology</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div className="form-group full">
-                <label className="form-label">Message</label>
-                <textarea className="form-textarea" value={form.message} onChange={handleChange("message")} placeholder="Tell us about your needs or ask any questions..." />
-              </div>
+    <section className="section contact-section" id="contact" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Schedule a Consultation</h2>
+        <p className="section-subtitle">Get in touch to schedule your appointment or ask a question</p>
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Full Name *</label>
+              <input type="text" className={`form-input ${errors.name ? "error" : ""}`} name="name" value={formData.name} onChange={handleChange} placeholder="Your full name" />
+              {errors.name && <span className="error-text">{errors.name}</span>}
             </div>
-            <button type="submit" className="form-submit">Request Appointment</button>
-          </form>
-        </div>
+            <div className="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" className={`form-input ${errors.phone ? "error" : ""}`} name="phone" value={formData.phone} onChange={handleChange} placeholder="(916) 555-0100" />
+              {errors.phone && <span className="error-text">{errors.phone}</span>}
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Email Address *</label>
+              <input type="email" className={`form-input ${errors.email ? "error" : ""}`} name="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" />
+              {errors.email && <span className="error-text">{errors.email}</span>}
+            </div>
+            <div className="form-group">
+              <label>Service of Interest</label>
+              <select className="form-input" name="service" value={formData.service} onChange={handleChange}>
+                <option value="">Select a service...</option>
+                {SERVICES.map((s, i) => (
+                  <option key={i} value={s.name}>{s.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Message</label>
+            <textarea className="form-input" name="message" value={formData.message} onChange={handleChange} rows="5" placeholder="Tell us about your concern or what you'd like to schedule..."></textarea>
+          </div>
+          <button type="submit" className="btn-primary full-width">Send Message</button>
+        </form>
       </div>
     </section>
   );
 }
 
-function Testimonials() {
+/* ─── 16. Testimonials ─── */
+function TestimonialsSection() {
+  const [ref, isVisible] = useIntersectionObserver();
   return (
-    <section className="section section-gray" id="testimonials">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Patient Reviews</div>
-          <h2 className="section-title">What Our Patients Say</h2>
-          <p className="section-subtitle">
-            Hear from real patients about their experience at Galleria Oral Surgery.
-          </p>
-        </div>
-        <div className="testimonials-grid fade-in">
-          {TESTIMONIALS.map((t, i) => (
-            <div className="testimonial-card" key={i}>
-              <p>{t.text}</p>
-              <div className="author">
-                <div className="avatar">{t.name[0]}</div>
-                <div>
-                  <div className="name">{t.name}</div>
-                  <div className="stars">{"\u2605".repeat(t.rating)}</div>
-                </div>
+    <section className="section testimonials-section" id="testimonials" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Patient Testimonials</h2>
+        <p className="section-subtitle">Hear from our patients about their experience</p>
+        <div className="testimonials-grid">
+          {(TESTIMONIALS || []).slice(0, 6).map((t, i) => (
+            <div key={i} className="testimonial-card">
+              <div className="testimonial-stars">
+                {"★".repeat(t.rating || 5)}{"☆".repeat(5 - (t.rating || 5))}
+              </div>
+              <p className="testimonial-text">"{t.text}"</p>
+              <div className="testimonial-author">
+                <strong>{t.name}</strong>
+                {t.procedure && <span className="testimonial-procedure">{t.procedure}</span>}
               </div>
             </div>
           ))}
@@ -985,26 +1848,32 @@ function Testimonials() {
   );
 }
 
-function FAQ() {
+/* ─── 17. FAQ ─── */
+function FAQSection() {
+  const [ref, isVisible] = useIntersectionObserver();
   const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (i) => {
+    setOpenIndex(openIndex === i ? null : i);
+  };
+
   return (
-    <section className="section" id="faq">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Common Questions</div>
-          <h2 className="section-title">Frequently Asked Questions</h2>
-          <p className="section-subtitle">
-            Find answers to common questions about oral surgery procedures, insurance, and what to expect.
-          </p>
-        </div>
-        <div className="faq-list fade-in">
-          {FAQS.map((faq, i) => (
-            <div className={`faq-item ${openIndex === i ? "active" : ""}`} key={i}>
-              <div className="faq-question" onClick={() => setOpenIndex(openIndex === i ? null : i)}>
-                <h3>{faq.q}</h3>
-                <div className="faq-toggle">+</div>
-              </div>
-              <div className="faq-answer"><p>{faq.a}</p></div>
+    <section className="section faq-section" id="faq" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Frequently Asked Questions</h2>
+        <p className="section-subtitle">Find answers to common questions about our procedures</p>
+        <div className="faq-list">
+          {(FAQS || []).slice(0, 12).map((faq, i) => (
+            <div key={i} className={`faq-item ${openIndex === i ? "open" : ""}`}>
+              <button className="faq-question" onClick={() => toggle(i)}>
+                <span>{faq.question}</span>
+                <span className="faq-toggle">{openIndex === i ? "−" : "+"}</span>
+              </button>
+              {openIndex === i && (
+                <div className="faq-answer">
+                  <p>{faq.answer}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -1013,64 +1882,103 @@ function FAQ() {
   );
 }
 
+/* ─── 18. Location ─── */
 function Location() {
+  const [ref, isVisible] = useIntersectionObserver();
+
+  const cityRegions = {
+    "Sacramento Metro": [],
+    "Foothills / Sierra": [],
+    "North Valley": [],
+    "Wine Country": [],
+    "Central Valley": [],
+    "Nevada": [],
+    "Oregon": [],
+  };
+
+  (CITIES_SERVED || []).forEach((city) => {
+    if (city.region && cityRegions[city.region]) {
+      cityRegions[city.region].push(city.name || city);
+    } else if (typeof city === "string") {
+      cityRegions["Sacramento Metro"].push(city);
+    }
+  });
+
   return (
-    <section className="section section-gray" id="location">
-      <div className="container">
-        <div className="section-header fade-in">
-          <div className="section-badge">\u2726 Visit Us</div>
-          <h2 className="section-title">Our Location</h2>
-          <p className="section-subtitle">
-            Conveniently located near the Westfield Galleria at Roseville, our modern surgical
-            facility is easily accessible from throughout the greater Sacramento region.
-          </p>
-        </div>
-        <div className="location-grid fade-in">
+    <section className="section location-section" id="location" ref={ref}>
+      <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <h2 className="section-title">Our Location</h2>
+        <p className="section-subtitle">Conveniently located in Roseville, serving the greater Sacramento area</p>
+
+        <div className="location-grid">
           <div className="location-info">
-            <h3>Galleria Oral Surgery</h3>
             <div className="location-detail">
-              <div className="loc-icon">\u2726</div>
-              <div className="loc-text">
-                <h4>Address</h4>
-                <p>{PRACTICE.address}</p>
-              </div>
+              <strong>📍 Address</strong>
+              <p>{PRACTICE.address || "1830 Sierra Gardens Dr, Suite 150, Roseville, CA 95661"}</p>
             </div>
             <div className="location-detail">
-              <div className="loc-icon">\u2726</div>
-              <div className="loc-text">
-                <h4>Phone</h4>
-                <p><a href={`tel:${PRACTICE.phone}`} style={{ color: "var(--gold)" }}>{PRACTICE.phone}</a></p>
-              </div>
+              <strong>📞 Phone</strong>
+              <p><a href="tel:9167832110">{PRACTICE.phone || "(916) 783-2110"}</a></p>
             </div>
             <div className="location-detail">
-              <div className="loc-icon">\u2726</div>
-              <div className="loc-text">
-                <h4>Email</h4>
-                <p><a href={`mailto:${PRACTICE.email}`} style={{ color: "var(--gold)" }}>{PRACTICE.email}</a></p>
-              </div>
+              <strong>✉️ Email</strong>
+              <p><a href={`mailto:${PRACTICE.email || "info@galleriaoms.com"}`}>{PRACTICE.email || "info@galleriaoms.com"}</a></p>
             </div>
+            {PRACTICE.fax && (
+              <div className="location-detail">
+                <strong>📠 Fax</strong>
+                <p>{PRACTICE.fax}</p>
+              </div>
+            )}
             <div className="location-detail">
-              <div className="loc-icon">\u2726</div>
-              <div className="loc-text">
-                <h4>Office Hours</h4>
-                <p>Monday \u2013 Thursday: 8:00 AM \u2013 5:00 PM</p>
-                <p>Friday: 8:00 AM \u2013 2:00 PM</p>
-                <p>Saturday \u2013 Sunday: Closed</p>
+              <strong>🕐 Hours</strong>
+              <div className="hours-grid">
+                {(PRACTICE.hours || [
+                  { day: "Monday - Thursday", time: "8:00 AM - 5:00 PM" },
+                  { day: "Friday", time: "8:00 AM - 2:00 PM" },
+                  { day: "Saturday - Sunday", time: "Closed" },
+                ]).map((h, i) => (
+                  <div key={i} className="hours-row">
+                    <span>{h.day}</span>
+                    <span>{h.time}</span>
+                  </div>
+                ))}
               </div>
-            </div>
-            <h3 style={{ marginTop: 28 }}>Communities We Serve</h3>
-            <div className="cities-grid">
-              {CITIES_SERVED.map((c) => <span className="city-tag" key={c}>{c}</span>)}
             </div>
           </div>
-          <div className="map-placeholder">
-            <div className="map-pin">{"\uD83D\uDCCD"}</div>
-            <p style={{ fontSize: ".9rem", fontWeight: 500 }}>Near Westfield Galleria at Roseville</p>
-            <p style={{ fontSize: ".8rem", marginTop: 8 }}>1197 Roseville Pkwy, Suite 100</p>
-            <a href="https://maps.google.com/?q=1197+Roseville+Pkwy+Suite+100+Roseville+CA+95678" target="_blank" rel="noopener noreferrer"
-              className="btn-primary" style={{ marginTop: 20, fontSize: ".8rem", padding: "10px 20px" }}>
-              Get Directions
-            </a>
+
+          <div className="location-map">
+            <div className="map-placeholder">
+              <span style={{ fontSize: "3rem" }}>🗺️</span>
+              <p>Google Maps</p>
+              <p className="map-address">{PRACTICE.address || "1830 Sierra Gardens Dr, Roseville, CA"}</p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(PRACTICE.address || "Galleria Oral Surgery Roseville CA")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-sm"
+              >
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="cities-served">
+          <h3 className="sub-heading">Cities We Serve</h3>
+          <div className="cities-grid">
+            {Object.entries(cityRegions).map(([region, cities]) =>
+              cities.length > 0 ? (
+                <div key={region} className="city-region">
+                  <h4>{region}</h4>
+                  <ul>
+                    {cities.map((city, i) => (
+                      <li key={i}>{city}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null
+            )}
           </div>
         </div>
       </div>
@@ -1078,103 +1986,226 @@ function Location() {
   );
 }
 
+/* ─── 19. Footer ─── */
 function Footer() {
+  const quickLinks = ["About", "Services", "Dental Implants", "Wisdom Teeth", "Knowledge Base", "Patient Info", "Contact"];
+  const serviceLinks = SERVICES ? SERVICES.slice(0, 8).map((s) => s.name) : [
+    "Dental Implants", "All-on-4", "Wisdom Teeth", "Bone Grafting",
+    "Jaw Surgery", "Tooth Extractions", "IV Sedation", "3D Imaging",
+  ];
+
   return (
     <footer className="footer">
-      <div className="footer-grid">
-        <div className="footer-brand">
-          <h4 style={{ color: "var(--gold)", fontFamily: "var(--font-heading)", fontSize: "1.1rem", letterSpacing: 1, marginBottom: 12 }}>Galleria Oral Surgery</h4>
-          <p>Dr. Alexander Antipov, DDS</p>
-          <p>Oral & Maxillofacial Surgery</p>
-          <p>{PRACTICE.address}</p>
-          <p><a href={`tel:${PRACTICE.phone}`}>{PRACTICE.phone}</a></p>
-          <p>{PRACTICE.hours}</p>
+      <div className="footer-inner">
+        <div className="footer-grid">
+          <div className="footer-col">
+            <h4>Galleria Oral Surgery</h4>
+            <p>Advanced oral and maxillofacial surgery in Roseville, CA. Board-eligible surgeon providing compassionate, evidence-based care.</p>
+            <p className="footer-powered">Powered by <strong>Fusion Dental Implants</strong></p>
+          </div>
+          <div className="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              {quickLinks.map((link, i) => (
+                <li key={i}>
+                  <a onClick={() => document.getElementById(link.toLowerCase().replace(/ /g, "-"))?.scrollIntoView({ behavior: "smooth" })}>
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>Services</h4>
+            <ul>
+              {serviceLinks.map((svc, i) => (
+                <li key={i}>
+                  <a onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                    {svc}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>Contact</h4>
+            <p>{PRACTICE.address || "1830 Sierra Gardens Dr, Suite 150, Roseville, CA 95661"}</p>
+            <p><a href="tel:9167832110">{PRACTICE.phone || "(916) 783-2110"}</a></p>
+            <p><a href={`mailto:${PRACTICE.email || "info@galleriaoms.com"}`}>{PRACTICE.email || "info@galleriaoms.com"}</a></p>
+          </div>
         </div>
-        <div>
-          <h4>Quick Links</h4>
-          <ul className="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Dr. Antipov</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#patient-info">Patient Info</a></li>
-            <li><a href="#referral">Refer a Patient</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
+
+        <div className="footer-bottom">
+          <p>&copy; 2026 Galleria Oral Surgery. All rights reserved.</p>
+          <p className="footer-disclaimer">
+            The information on this website is for general informational purposes only. It is not intended as medical advice, diagnosis, or treatment. Always seek the advice of a qualified healthcare provider with any questions regarding a medical condition. Individual results may vary. Testimonials are from actual patients but do not guarantee outcomes. Cost estimates are approximate and subject to change based on individual clinical needs.
+          </p>
         </div>
-        <div>
-          <h4>Services</h4>
-          <ul className="footer-links">
-            <li><a href="#dental-implants">Dental Implants</a></li>
-            <li><a href="#all-on-4">All-on-4 Implants</a></li>
-            <li><a href="#wisdom-teeth">Wisdom Teeth</a></li>
-            <li><a href="#services">Bone Grafting</a></li>
-            <li><a href="#services">Jaw Surgery</a></li>
-            <li><a href="#services">Facial Trauma</a></li>
-            <li><a href="#services">TMJ Treatment</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>For Doctors</h4>
-          <ul className="footer-links">
-            <li><a href="#referral">Online Referral Form</a></li>
-            <li><a href="mailto:referrals@galleriaoralsurgery.com">Email Referral</a></li>
-            <li><a href={`tel:${PRACTICE.phone}`}>Call to Refer</a></li>
-          </ul>
-          <h4 style={{ marginTop: 24 }}>Emergency</h4>
-          <ul className="footer-links">
-            <li><a href={`tel:${PRACTICE.phone}`}>{PRACTICE.phone}</a></li>
-            <li><a href="#services">Facial Trauma</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>&copy; 2026 Galleria Oral Surgery. All rights reserved. This website is for informational purposes only and does not constitute medical advice. Individual results may vary.</p>
-        <p className="powered">Powered by Fusion Dental Implants</p>
       </div>
     </footer>
   );
 }
 
-/* ========== MAIN APP ========== */
+/* ─── 20. FloatingComms ─── */
+function FloatingComms() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const whatsappUrl = PRACTICE.whatsapp
+    ? `https://wa.me/${PRACTICE.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi! I'd like to schedule a consultation at Galleria Oral Surgery.")}`
+    : `https://wa.me/19167832110?text=${encodeURIComponent("Hi! I'd like to schedule a consultation at Galleria Oral Surgery.")}`;
+
+  const telegramUrl = PRACTICE.telegram
+    ? `https://t.me/${PRACTICE.telegram}`
+    : "https://t.me/GalleriaOMS";
+
+  return (
+    <div className="floating-comms">
+      {isOpen && (
+        <div className="comms-menu">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="comms-option whatsapp" title="WhatsApp">
+            <span className="comms-icon">💬</span>
+            <span>WhatsApp</span>
+          </a>
+          <a href={telegramUrl} target="_blank" rel="noopener noreferrer" className="comms-option telegram" title="Telegram">
+            <span className="comms-icon">✈️</span>
+            <span>Telegram</span>
+          </a>
+          <a href="tel:9167832110" className="comms-option phone" title="Call Us">
+            <span className="comms-icon">📞</span>
+            <span>Call</span>
+          </a>
+          <a href="sms:9167832110" className="comms-option sms" title="Send SMS">
+            <span className="comms-icon">💬</span>
+            <span>SMS</span>
+          </a>
+          <button className="comms-close" onClick={() => setIsOpen(false)}>✕</button>
+        </div>
+      )}
+      <button
+        className={`comms-fab ${isOpen ? "open" : ""}`}
+        onClick={() => setIsOpen(!isOpen)}
+        title="Chat with us!"
+      >
+        <span className="fab-icon">{isOpen ? "✕" : "💬"}</span>
+        {!isOpen && <span className="fab-pulse"></span>}
+      </button>
+    </div>
+  );
+}
+
+/* ─── 21. AccessibilityToolbar ─── */
+function AccessibilityToolbar({ fontSize, setFontSize, highContrast, setHighContrast }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const changeFontSize = (delta) => {
+    const newSize = Math.max(12, Math.min(24, fontSize + delta));
+    setFontSize(newSize);
+    document.documentElement.style.fontSize = `${newSize}px`;
+  };
+
+  const resetFontSize = () => {
+    setFontSize(16);
+    document.documentElement.style.fontSize = "16px";
+  };
+
+  const toggleContrast = () => {
+    setHighContrast(!highContrast);
+    document.body.classList.toggle("high-contrast");
+  };
+
+  return (
+    <div className="accessibility-toolbar">
+      {isOpen && (
+        <div className="a11y-panel">
+          <h4>Accessibility</h4>
+          <div className="a11y-option">
+            <span>Font Size</span>
+            <div className="a11y-font-controls">
+              <button onClick={() => changeFontSize(-2)} title="Decrease font size">A-</button>
+              <button onClick={resetFontSize} title="Reset font size">A</button>
+              <button onClick={() => changeFontSize(2)} title="Increase font size">A+</button>
+            </div>
+          </div>
+          <div className="a11y-option">
+            <span>High Contrast</span>
+            <button
+              className={`a11y-toggle ${highContrast ? "active" : ""}`}
+              onClick={toggleContrast}
+            >
+              {highContrast ? "ON" : "OFF"}
+            </button>
+          </div>
+          <button className="a11y-close" onClick={() => setIsOpen(false)}>Close</button>
+        </div>
+      )}
+      <button className="a11y-fab" onClick={() => setIsOpen(!isOpen)} title="Accessibility Options">
+        ⚙
+      </button>
+    </div>
+  );
+}
+
+/* ─── 1. App (main component) ─── */
 export default function App() {
+  const [activeSection, setActiveSection] = useState("hero");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
+  const [highContrast, setHighContrast] = useState(false);
+  const [showKnowledgeBase, setShowKnowledgeBase] = useState(null);
+  const [showCalculator, setShowCalculator] = useState(null);
+
   useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = STYLES;
-    document.head.appendChild(style);
-    return () => style.remove();
+    const styleTag = document.createElement("style");
+    styleTag.textContent = STYLES;
+    document.head.appendChild(styleTag);
+    return () => {
+      document.head.removeChild(styleTag);
+    };
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      }),
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
-    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  });
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
-      <Navigation />
-      <Hero />
+    <div className="app">
+      <Nav
+        scrolled={scrolled}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        setActiveSection={setActiveSection}
+        setShowCalculator={setShowCalculator}
+        setShowKnowledgeBase={setShowKnowledgeBase}
+      />
+      <Hero setActiveSection={setActiveSection} />
       <About />
-      <ServicesGrid />
+      <AISymptomChecker />
+      <ServicesSection />
       <DentalImplants />
       <AllOnFour />
       <WisdomTeeth />
+      <CostCalculators />
+      <KnowledgeBaseSection showArticle={showKnowledgeBase} setShowArticle={setShowKnowledgeBase} />
+      <BeforeAfterGallery />
       <PatientInfo />
-      <Testimonials />
-      <ReferralSection />
+      <ReferralForm />
       <ContactForm />
-      <FAQ />
+      <TestimonialsSection />
+      <FAQSection />
       <Location />
       <Footer />
-    </>
+      <FloatingComms />
+      <AccessibilityToolbar
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        highContrast={highContrast}
+        setHighContrast={setHighContrast}
+      />
+    </div>
   );
 }
