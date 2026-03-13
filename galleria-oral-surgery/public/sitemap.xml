@@ -1,69 +1,354 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ==================== MAIN PAGES ==================== -->
   <url>
-    <loc>https://www.galleriaoralsurgery.com/</loc>
+    <loc>https://www.galleriaoms.com/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#about</loc>
+    <loc>https://www.galleriaoms.com/#about</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#services</loc>
+    <loc>https://www.galleriaoms.com/#services</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#dental-implants</loc>
+    <loc>https://www.galleriaoms.com/#dental-implants</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#all-on-4</loc>
+    <loc>https://www.galleriaoms.com/#all-on-4</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#wisdom-teeth</loc>
+    <loc>https://www.galleriaoms.com/#wisdom-teeth</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#patient-info</loc>
+    <loc>https://www.galleriaoms.com/#patient-info</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#referral</loc>
+    <loc>https://www.galleriaoms.com/#referral</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#contact</loc>
+    <loc>https://www.galleriaoms.com/#contact</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#faq</loc>
+    <loc>https://www.galleriaoms.com/#faq</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.galleriaoms.com/#testimonials</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.galleriaoralsurgery.com/#testimonials</loc>
+    <loc>https://www.galleriaoms.com/#location</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- ==================== DENTAL IMPLANTS BY CITY ==================== -->
+  <!-- Sacramento Metro -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-granite-bay-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-el-dorado-hills-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-citrus-heights-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-rancho-cordova-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-fair-oaks-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-orangevale-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-carmichael-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-loomis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-davis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-woodland-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-west-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-antelope-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-north-highlands-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-rio-linda-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-galt-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <!-- Foothills & Sierra -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-grass-valley-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-nevada-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-placerville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-cameron-park-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-shingle-springs-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-colfax-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-truckee-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-south-lake-tahoe-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-tahoe-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- North Valley -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-yuba-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-marysville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-paradise-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-oroville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-anderson-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-red-bluff-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-mount-shasta-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-yreka-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-susanville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <!-- Wine Country / North Bay -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-vacaville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-fairfield-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-dixon-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-napa-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-santa-rosa-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-vallejo-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-ukiah-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-eureka-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <!-- Central Valley -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-stockton-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-lodi-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-manteca-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-tracy-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-modesto-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-turlock-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-merced-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Nevada -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-sparks-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-incline-village-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-minden-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-gardnerville-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-fernley-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-fallon-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-dayton-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <!-- Oregon -->
+  <url><loc>https://www.galleriaoms.com/dental-implants-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-ashland-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-grants-pass-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-klamath-falls-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-roseburg-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/dental-implants-brookings-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+
+  <!-- ==================== FULL MOUTH DENTAL IMPLANTS BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-granite-bay-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-el-dorado-hills-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-citrus-heights-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-davis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-yuba-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-vacaville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-stockton-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-sparks-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/full-mouth-dental-implants-klamath-falls-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ==================== ALL-ON-4 DENTAL IMPLANTS BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-granite-bay-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-el-dorado-hills-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-citrus-heights-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-davis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-yuba-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-sparks-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/all-on-4-dental-implants-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ==================== WISDOM TEETH REMOVAL BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-granite-bay-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-el-dorado-hills-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-citrus-heights-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-fair-oaks-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-rancho-cordova-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-carmichael-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-davis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-yuba-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-grass-valley-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-placerville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-truckee-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-vacaville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-stockton-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-sparks-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/wisdom-teeth-removal-grants-pass-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ==================== ORAL SURGEON BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-granite-bay-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-el-dorado-hills-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-citrus-heights-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-fair-oaks-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-carmichael-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-rancho-cordova-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-davis-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-woodland-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-west-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-grass-valley-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-nevada-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-placerville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-yuba-city-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-marysville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-truckee-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-south-lake-tahoe-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-vacaville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-fairfield-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-napa-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-santa-rosa-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-stockton-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-modesto-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-eureka-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-mount-shasta-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-yreka-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-sparks-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-incline-village-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-minden-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-fernley-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-fallon-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-ashland-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-grants-pass-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-klamath-falls-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgeon-roseburg-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+
+  <!-- ==================== ORAL SURGERY BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/oral-surgery-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-elk-grove-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-lincoln-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-auburn-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-chico-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-redding-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-carson-city-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-surgery-medford-or</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ==================== BONE GRAFTING BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/bone-grafting-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/bone-grafting-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/bone-grafting-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/bone-grafting-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/bone-grafting-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== JAW SURGERY BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/jaw-surgery-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/jaw-surgery-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/jaw-surgery-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== TOOTH EXTRACTION BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/tooth-extraction-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/tooth-extraction-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/tooth-extraction-rocklin-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/tooth-extraction-folsom-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/tooth-extraction-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== TMJ TREATMENT BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/tmj-treatment-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/tmj-treatment-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/tmj-treatment-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== IV SEDATION BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/iv-sedation-dentistry-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/iv-sedation-dentistry-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/iv-sedation-dentistry-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== IMPLANT-SUPPORTED DENTURES BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/implant-supported-dentures-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/implant-supported-dentures-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/implant-supported-dentures-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== TEETH IN A DAY BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/teeth-in-a-day-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/teeth-in-a-day-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.galleriaoms.com/teeth-in-a-day-reno-nv</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== SINUS LIFT BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/sinus-lift-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/sinus-lift-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== FACIAL TRAUMA BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/facial-trauma-surgery-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/facial-trauma-surgery-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== IMPACTED CANINE EXPOSURE BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/impacted-canine-exposure-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/impacted-canine-exposure-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== ORAL PATHOLOGY BY CITY ==================== -->
+  <url><loc>https://www.galleriaoms.com/oral-pathology-biopsy-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.galleriaoms.com/oral-pathology-biopsy-sacramento-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== PRF THERAPY ==================== -->
+  <url><loc>https://www.galleriaoms.com/prf-therapy-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ==================== CLEFT LIP PALATE ==================== -->
+  <url><loc>https://www.galleriaoms.com/cleft-lip-palate-surgery-roseville-ca</loc><lastmod>2026-03-13</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
 </urlset>
