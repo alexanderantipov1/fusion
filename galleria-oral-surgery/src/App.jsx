@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { PRACTICE, CITIES_SERVED, SERVICES, TESTIMONIALS, FAQS, REFERRAL_REASONS, SYMPTOM_CATEGORIES, SYMPTOM_RECOMMENDATIONS, IMPLANT_PRICING, KNOWLEDGE_BASE, STYLES } from "./data.js";
+import { PRACTICE, CITIES_SERVED, SERVICES, TESTIMONIALS, FAQS, REFERRAL_REASONS, SYMPTOM_CATEGORIES, SYMPTOM_RECOMMENDATIONS, IMPLANT_PRICING, KNOWLEDGE_BASE, REFERRING_BENEFITS, CE_RESOURCES, REFERRAL_PROCESS_STEPS, PRACTICE_STATS, PATIENT_PATHWAYS, INSURANCE_PLANS, FINANCING_OPTIONS, STYLES } from "./data.js";
 
 /* ─── Utility: useIntersectionObserver ─── */
 function useIntersectionObserver(options = {}) {
@@ -26,17 +26,28 @@ function useIntersectionObserver(options = {}) {
 }
 
 /* ─── 2. Nav ─── */
-function Nav({ scrolled, mobileMenuOpen, setMobileMenuOpen, setActiveSection, setShowCalculator, setShowKnowledgeBase }) {
-  const links = [
+function Nav({ scrolled, mobileMenuOpen, setMobileMenuOpen, setActiveSection, setShowCalculator, setShowKnowledgeBase, audience, setAudience }) {
+  const patientLinks = [
     { label: "About", target: "about" },
     { label: "Services", target: "services" },
     { label: "AI Tools", target: "symptom-checker" },
     { label: "Implants", target: "dental-implants" },
     { label: "Cost Calculator", target: "cost-calculators" },
-    { label: "Knowledge Base", target: "knowledge-base" },
-    { label: "Referrals", target: "referral-form" },
+    { label: "Insurance", target: "insurance" },
     { label: "Contact", target: "contact" },
   ];
+
+  const doctorLinks = [
+    { label: "About", target: "about" },
+    { label: "Services", target: "services" },
+    { label: "Why Refer", target: "referring-doctors" },
+    { label: "CE Resources", target: "ce-resources" },
+    { label: "Submit Referral", target: "referral-form" },
+    { label: "Knowledge Base", target: "knowledge-base" },
+    { label: "Contact", target: "contact" },
+  ];
+
+  const links = audience === "b2b" ? doctorLinks : patientLinks;
 
   const scrollTo = (id) => {
     setMobileMenuOpen(false);
@@ -56,6 +67,10 @@ function Nav({ scrolled, mobileMenuOpen, setMobileMenuOpen, setActiveSection, se
               {l.label}
             </a>
           ))}
+          <div className="nav-audience-toggle">
+            <button className={`nav-toggle-btn ${audience === "b2c" ? "active" : ""}`} onClick={() => { setAudience("b2c"); setMobileMenuOpen(false); }}>Patients</button>
+            <button className={`nav-toggle-btn ${audience === "b2b" ? "active" : ""}`} onClick={() => { setAudience("b2b"); setMobileMenuOpen(false); }}>Doctors</button>
+          </div>
           <a href="tel:9167832110" className="nav-cta-btn">(916) 783-2110</a>
         </div>
         <button className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
@@ -69,7 +84,7 @@ function Nav({ scrolled, mobileMenuOpen, setMobileMenuOpen, setActiveSection, se
 }
 
 /* ─── 3. Hero ─── */
-function Hero({ setActiveSection }) {
+function Hero({ setActiveSection, audience, setAudience }) {
   const [ref, isVisible] = useIntersectionObserver();
 
   const scrollTo = (id) => {
@@ -79,17 +94,39 @@ function Hero({ setActiveSection }) {
   return (
     <section className="hero-section" id="hero" ref={ref}>
       <div className={`hero-content ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+        <div className="audience-toggle">
+          <div className="toggle-wrapper">
+            <button className={`toggle-btn ${audience === "b2c" ? "active" : ""}`} onClick={() => setAudience("b2c")}>I'm a Patient</button>
+            <button className={`toggle-btn ${audience === "b2b" ? "active" : ""}`} onClick={() => setAudience("b2b")}>I'm a Doctor</button>
+          </div>
+        </div>
         <span className="hero-badge">Board-Eligible Oral &amp; Maxillofacial Surgeon</span>
         <h1 className="hero-title">
-          Advanced Oral Surgery, <em>Powered by Intelligence</em>
+          {audience === "b2b"
+            ? <>Your Patients Deserve <em>World-Class Oral Surgery</em></>
+            : <>Advanced Oral Surgery, <em>Powered by Intelligence</em></>
+          }
         </h1>
         <p className="hero-subtitle">
-          Experience the future of oral surgery with AI-powered diagnostic tools, evidence-based treatment planning, and compassionate care — all in one advanced practice in Roseville, CA.
+          {audience === "b2b"
+            ? "Partner with Galleria Oral Surgery for seamless referrals, outstanding outcomes, and same-day communication. 500+ practices trust us with their patients."
+            : "Experience the future of oral surgery with AI-powered diagnostic tools, evidence-based treatment planning, and compassionate care — all in one advanced practice in Roseville, CA."
+          }
         </p>
         <div className="hero-buttons">
-          <button className="btn-primary" onClick={() => scrollTo("symptom-checker")}>AI Symptom Check</button>
-          <button className="btn-secondary" onClick={() => scrollTo("cost-calculators")}>Calculate Costs</button>
-          <button className="btn-outline" onClick={() => scrollTo("contact")}>Schedule Consultation</button>
+          {audience === "b2b" ? (
+            <>
+              <button className="btn-primary" onClick={() => scrollTo("referral-form")}>Submit a Referral</button>
+              <button className="btn-secondary" onClick={() => scrollTo("referring-doctors")}>Why Refer to Us</button>
+              <button className="btn-outline" onClick={() => scrollTo("ce-resources")}>CE Resources</button>
+            </>
+          ) : (
+            <>
+              <button className="btn-primary" onClick={() => scrollTo("symptom-checker")}>AI Symptom Check</button>
+              <button className="btn-secondary" onClick={() => scrollTo("cost-calculators")}>Calculate Costs</button>
+              <button className="btn-outline" onClick={() => scrollTo("contact")}>Schedule Consultation</button>
+            </>
+          )}
         </div>
         <div className="trust-badges">
           <div className="trust-badge">
@@ -1561,6 +1598,188 @@ function PatientInfo() {
   );
 }
 
+/* ─── B2B: Referral Portal ─── */
+function ReferralPortal() {
+  const [ref, isVisible] = useIntersectionObserver();
+
+  return (
+    <div id="referring-doctors">
+      {/* B2B Hero Banner */}
+      <section className="b2b-portal" ref={ref}>
+        <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+          <div className="b2b-badge">For Referring Doctors</div>
+          <h2 className="section-title">Your Trusted Oral Surgery Partner</h2>
+          <p className="section-subtitle">Streamlined referrals, exceptional outcomes, seamless communication</p>
+
+          <div className="b2b-hero-grid">
+            <div className="b2b-hero-text">
+              <h3>Why 500+ Practices Trust Galleria Oral Surgery</h3>
+              <p>
+                We understand that referring a patient is placing your trust in another provider. Dr. Antipov and the Galleria team are committed to exceeding your expectations with prompt communication, outstanding clinical outcomes, and a referral experience designed for busy dental practices.
+              </p>
+              <p>
+                From same-day emergency appointments to detailed post-op reports sent directly to your office, we make it easy to collaborate on your patients' surgical needs.
+              </p>
+              <button className="btn-gold" onClick={() => document.getElementById("referral-form")?.scrollIntoView({ behavior: "smooth" })}>
+                Submit a Referral Now
+              </button>
+            </div>
+            <div className="b2b-stats">
+              {PRACTICE_STATS.map((stat, i) => (
+                <div key={i} className="b2b-stat">
+                  <span className="b2b-stat-value">{stat.value}</span>
+                  <span className="b2b-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Referral Process Steps */}
+      <section className="referral-process">
+        <div className="section-inner">
+          <h2 className="section-title">How Referrals Work</h2>
+          <p className="section-subtitle">A simple, transparent process from referral to follow-up</p>
+          <div className="process-steps">
+            {REFERRAL_PROCESS_STEPS.map((s) => (
+              <div key={s.step} className="process-step">
+                <div className="process-step-icon">
+                  {s.icon}
+                  <span className="process-step-num">{s.step}</span>
+                </div>
+                <h4>{s.title}</h4>
+                <p>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits of Referring */}
+      <section className="benefits-section">
+        <div className="section-inner">
+          <h2 className="section-title">Benefits for Your Practice</h2>
+          <p className="section-subtitle">We support your practice with tools, communication, and education</p>
+          <div className="benefits-grid">
+            {REFERRING_BENEFITS.map((b, i) => (
+              <div key={i} className="benefit-card">
+                <span className="benefit-card-icon">{b.icon}</span>
+                <h4>{b.title}</h4>
+                <p>{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CE Resources */}
+      <section className="ce-section" id="ce-resources">
+        <div className="section-inner">
+          <h2 className="section-title">Continuing Education</h2>
+          <p className="section-subtitle">Complimentary CE events for our referring partners</p>
+          <div className="ce-grid">
+            {CE_RESOURCES.map((ce, i) => (
+              <div key={i} className="ce-card">
+                <div className="ce-card-header">
+                  <span className="ce-type">{ce.type}</span>
+                  <span className="ce-credits">{ce.credits}</span>
+                </div>
+                <h4>{ce.title}</h4>
+                <p>{ce.desc}</p>
+                <div className="ce-card-footer">
+                  <span className="ce-date">{ce.date}</span>
+                  <button className="ce-register">Register Interest</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ─── B2C: Patient Hub ─── */
+function PatientHub() {
+  const [ref, isVisible] = useIntersectionObserver();
+
+  const handlePathwayCta = (type) => {
+    if (type === "emergency") {
+      window.location.href = "tel:9167832110";
+    } else if (type === "new") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      document.getElementById("patient-info")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div id="patient-hub">
+      {/* Patient Pathways */}
+      <section className="patient-hub" ref={ref}>
+        <div className={`section-inner ${isVisible ? "fade-in-up" : "fade-hidden"}`}>
+          <h2 className="section-title">Start Your Journey</h2>
+          <p className="section-subtitle">Choose your path — we'll guide you every step of the way</p>
+          <div className="pathways-grid">
+            {PATIENT_PATHWAYS.map((p, i) => (
+              <div key={i} className="pathway-card">
+                <span className="pathway-icon">{p.icon}</span>
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <ul className="pathway-steps">
+                  {p.steps.map((step, j) => (
+                    <li key={j}>{step}</li>
+                  ))}
+                </ul>
+                <button className="pathway-cta" onClick={() => handlePathwayCta(p.type)}>
+                  {p.cta}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Insurance & Financing */}
+      <section className="insurance-section" id="insurance">
+        <div className="section-inner">
+          <h2 className="section-title">Insurance & Payment Options</h2>
+          <p className="section-subtitle">We work with most insurance plans and offer flexible financing</p>
+          <div className="insurance-grid">
+            {INSURANCE_PLANS.map((cat, i) => (
+              <div key={i} className="insurance-cat">
+                <h4>{cat.category}</h4>
+                <div>
+                  {cat.plans.map((plan, j) => (
+                    <span key={j} className="plan-tag">{plan}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="insurance-cta">
+            <p>Don't see your plan? Call us at <strong>(916) 783-2110</strong> — we'll verify your benefits at no charge.</p>
+            <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              Verify My Insurance
+            </button>
+          </div>
+
+          <div className="financing-hub">
+            {FINANCING_OPTIONS.map((f, i) => (
+              <div key={i} className="financing-card">
+                <span className="financing-card-icon">{f.icon}</span>
+                <h4>{f.name}</h4>
+                <p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 /* ─── 14. ReferralForm ─── */
 function ReferralForm() {
   const [ref, isVisible] = useIntersectionObserver();
@@ -1989,7 +2208,8 @@ function Location() {
 /* ─── 19. Footer ─── */
 function Footer() {
   const quickLinks = ["About", "Services", "Dental Implants", "Wisdom Teeth", "Knowledge Base", "Patient Info", "Contact"];
-  const serviceLinks = SERVICES ? SERVICES.slice(0, 8).map((s) => s.name) : [
+  const doctorLinks = ["Refer a Patient", "CE Resources", "Why Refer to Us", "Case Consultation"];
+  const serviceLinks = SERVICES ? SERVICES.slice(0, 8).map((s) => s.title) : [
     "Dental Implants", "All-on-4", "Wisdom Teeth", "Bone Grafting",
     "Jaw Surgery", "Tooth Extractions", "IV Sedation", "3D Imaging",
   ];
@@ -2022,6 +2242,18 @@ function Footer() {
                 <li key={i}>
                   <a onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                     {svc}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>For Doctors</h4>
+            <ul>
+              {doctorLinks.map((link, i) => (
+                <li key={i}>
+                  <a onClick={() => document.getElementById(i === 0 ? "referral-form" : i === 1 ? "ce-resources" : i === 2 ? "referring-doctors" : "contact")?.scrollIntoView({ behavior: "smooth" })}>
+                    {link}
                   </a>
                 </li>
               ))}
@@ -2154,6 +2386,7 @@ export default function App() {
   const [highContrast, setHighContrast] = useState(false);
   const [showKnowledgeBase, setShowKnowledgeBase] = useState(null);
   const [showCalculator, setShowCalculator] = useState(null);
+  const [audience, setAudience] = useState("b2c");
 
   useEffect(() => {
     const styleTag = document.createElement("style");
@@ -2181,9 +2414,12 @@ export default function App() {
         setActiveSection={setActiveSection}
         setShowCalculator={setShowCalculator}
         setShowKnowledgeBase={setShowKnowledgeBase}
+        audience={audience}
+        setAudience={setAudience}
       />
-      <Hero setActiveSection={setActiveSection} />
+      <Hero setActiveSection={setActiveSection} audience={audience} setAudience={setAudience} />
       <About />
+      {audience === "b2c" && <PatientHub />}
       <AISymptomChecker />
       <ServicesSection />
       <DentalImplants />
@@ -2192,6 +2428,7 @@ export default function App() {
       <CostCalculators />
       <KnowledgeBaseSection showArticle={showKnowledgeBase} setShowArticle={setShowKnowledgeBase} />
       <BeforeAfterGallery />
+      {audience === "b2b" && <ReferralPortal />}
       <PatientInfo />
       <ReferralForm />
       <ContactForm />

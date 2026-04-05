@@ -640,6 +640,70 @@ export const KNOWLEDGE_BASE = [
   }
 ];
 
+// ============================================================
+// B2B DATA - FOR REFERRING DOCTORS & DENTAL PRACTICES
+// ============================================================
+
+export const REFERRING_BENEFITS = [
+  { icon: "🔄", title: "Same-Day Referral Response", desc: "We contact your referred patients within 1 business day and schedule promptly based on urgency level." },
+  { icon: "📊", title: "Detailed Case Reports", desc: "Receive comprehensive post-operative reports including treatment summaries, imaging, and follow-up plans for every referred patient." },
+  { icon: "🔬", title: "3D CBCT Imaging Shared", desc: "Digital imaging and CBCT scans shared securely with your office for coordinated treatment planning." },
+  { icon: "📞", title: "Direct Doctor-to-Doctor Line", desc: "Priority access to Dr. Antipov for case consultations, treatment discussions, and collaborative planning." },
+  { icon: "⚡", title: "Emergency Priority Scheduling", desc: "Urgent and emergency referrals are seen same-day or next-day — your patients never wait when it matters." },
+  { icon: "📋", title: "Seamless Communication", desc: "Automated referral confirmations, appointment updates, and post-op summaries sent directly to your office." },
+  { icon: "🎓", title: "CE Opportunities", desc: "Complimentary continuing education events, lunch-and-learns, and study club access for referring partners." },
+  { icon: "🤝", title: "Co-Treatment Planning", desc: "Collaborative implant planning with restorative dentists — we work together for optimal prosthetic outcomes." }
+];
+
+export const CE_RESOURCES = [
+  { title: "Implant Placement for the Restorative Dentist", type: "Webinar", credits: "2 CE", desc: "Understanding surgical considerations that affect restorative outcomes. Learn when to refer and how to plan implant cases collaboratively.", date: "Monthly" },
+  { title: "Managing Oral Surgery Complications in General Practice", type: "Lunch & Learn", credits: "1.5 CE", desc: "Recognizing and managing post-extraction complications, when to refer, and emergency protocols for your practice.", date: "Quarterly" },
+  { title: "CBCT Interpretation for General Dentists", type: "Hands-On Workshop", credits: "3 CE", desc: "Learn to read and interpret CBCT scans, identify pathology, and understand implant planning software.", date: "Bi-Annual" },
+  { title: "All-on-4 Restorative Protocols", type: "Study Club", credits: "2 CE", desc: "Full arch implant restorative workflow — from surgical planning to final prosthesis delivery. Interdisciplinary collaboration.", date: "Quarterly" },
+  { title: "Sedation Emergencies: Are You Prepared?", type: "Workshop", credits: "2 CE", desc: "Emergency preparedness for dental offices. BLS/ACLS refresher and sedation emergency simulation training.", date: "Annual" },
+  { title: "Bone Grafting & Ridge Preservation Techniques", type: "Webinar", credits: "1.5 CE", desc: "Current evidence and techniques in socket preservation, guided bone regeneration, and sinus augmentation.", date: "Monthly" }
+];
+
+export const REFERRAL_PROCESS_STEPS = [
+  { step: 1, title: "Submit Referral", desc: "Use our online form, fax to (916) 783-2111, or call directly. Include clinical notes and imaging when available.", icon: "📤" },
+  { step: 2, title: "Confirmation Sent", desc: "Your office receives an automatic confirmation within minutes. We contact the patient within 1 business day.", icon: "✅" },
+  { step: 3, title: "Patient Seen & Treated", desc: "Dr. Antipov evaluates the patient, develops a treatment plan, and coordinates care with your office.", icon: "🏥" },
+  { step: 4, title: "Report Delivered", desc: "Post-treatment summary, imaging, and follow-up instructions sent securely to your practice.", icon: "📄" }
+];
+
+export const PRACTICE_STATS = [
+  { value: "5,000+", label: "Implants Placed" },
+  { value: "10,000+", label: "Wisdom Teeth Extracted" },
+  { value: "500+", label: "Referring Practices" },
+  { value: "98%", label: "Referral Satisfaction" },
+  { value: "< 24hr", label: "Avg. Referral Response" },
+  { value: "15+", label: "Years Experience" }
+];
+
+// ============================================================
+// B2C DATA - ENHANCED PATIENT EXPERIENCE
+// ============================================================
+
+export const PATIENT_PATHWAYS = [
+  { type: "new", icon: "🆕", title: "New Patient", desc: "First time visiting Galleria Oral Surgery? Start here for a seamless experience.", steps: ["Schedule consultation online or by phone", "Complete new patient forms (download below)", "Bring insurance card, ID, and referral if applicable", "Arrive 15 minutes early for your appointment"], cta: "Schedule First Visit" },
+  { type: "returning", icon: "🔄", title: "Returning Patient", desc: "Welcome back! Access your records, schedule follow-ups, and manage your care.", steps: ["Log in to patient portal for records", "Schedule follow-up appointments online", "Access post-op instructions anytime", "Message our team with questions"], cta: "Patient Portal" },
+  { type: "emergency", icon: "🚨", title: "Emergency Patient", desc: "Dental emergency? We accommodate urgent cases with same-day appointments.", steps: ["Call (916) 783-2110 immediately", "Describe symptoms to our team", "Same-day or next-day scheduling", "After-hours: follow voicemail instructions"], cta: "Call Now" },
+  { type: "referred", icon: "📋", title: "Referred Patient", desc: "Your dentist referred you to us? We make the transition seamless.", steps: ["We may already have your referral on file", "Call to confirm or schedule your appointment", "Bring any X-rays or records from your dentist", "Insurance pre-authorization handled by our team"], cta: "Confirm Referral" }
+];
+
+export const INSURANCE_PLANS = [
+  { category: "PPO Dental", plans: ["Delta Dental PPO", "MetLife", "Cigna Dental", "Guardian", "Aetna Dental", "United Concordia", "Ameritas", "Principal"] },
+  { category: "Medical Insurance", plans: ["Blue Shield", "Anthem Blue Cross", "Aetna", "United Healthcare", "Cigna", "Health Net", "Tricare", "Medicare"] },
+  { category: "Discount & HMO", plans: ["Delta Dental HMO (select plans)", "DHMO plans (limited)", "Medi-Cal (select procedures)"] }
+];
+
+export const FINANCING_OPTIONS = [
+  { name: "CareCredit", desc: "0% interest for 6-24 months on qualifying procedures. Apply online in minutes.", icon: "💳" },
+  { name: "In-House Payment Plans", desc: "Flexible monthly payments with no credit check. Customized to fit your budget.", icon: "🏦" },
+  { name: "Insurance Maximization", desc: "We help maximize your dental and medical benefits. Many oral surgery procedures have medical coverage.", icon: "🛡️" },
+  { name: "HSA / FSA Accepted", desc: "Use pre-tax health savings or flexible spending accounts for oral surgery procedures.", icon: "💰" }
+];
+
 export const STYLES = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -963,7 +1027,7 @@ a{text-decoration:none;color:inherit}
 
 /* FOOTER */
 .footer-main{background:var(--navy);color:var(--white);padding:60px 24px 30px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto}
 .footer-col h4{color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
 .footer-col p{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.6;margin-bottom:8px}
 .footer-col a{color:rgba(255,255,255,.6);font-size:.82rem;display:block;margin-bottom:8px;transition:color .2s}
@@ -1002,11 +1066,114 @@ a{text-decoration:none;color:inherit}
 .a11y-switch::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--white);transition:transform .2s;box-shadow:var(--shadow-sm)}
 .a11y-switch.on::after{transform:translateX(20px)}
 
+/* B2B REFERRAL PORTAL */
+.b2b-portal{background:linear-gradient(135deg,#0B1D3A 0%,#132d54 50%,#1a3a6b 100%);color:var(--white);padding:80px 24px}
+.b2b-portal .section-title{color:var(--white)}
+.b2b-portal .section-subtitle{color:rgba(255,255,255,.7)}
+.b2b-badge{display:inline-block;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);color:var(--gold);padding:6px 18px;border-radius:20px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.b2b-hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;margin-top:40px}
+.b2b-hero-text h3{font-size:1.8rem;margin-bottom:16px;font-family:'Playfair Display',serif;color:var(--white)}
+.b2b-hero-text p{color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:20px;font-size:.95rem}
+.b2b-hero-text .btn-gold{background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:.9rem;transition:all .3s;display:inline-block}
+.b2b-hero-text .btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,169,110,.3)}
+.b2b-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.b2b-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:center;transition:all .3s}
+.b2b-stat:hover{background:rgba(255,255,255,.1);border-color:var(--gold);transform:translateY(-3px)}
+.b2b-stat-value{font-size:2rem;font-weight:800;color:var(--gold);display:block;font-family:'Playfair Display',serif}
+.b2b-stat-label{font-size:.78rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+
+/* REFERRAL BENEFITS */
+.benefits-section{padding:60px 24px;background:var(--gray-50)}
+.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:40px auto 0}
+.benefit-card{background:var(--white);border-radius:12px;padding:28px;border:1px solid var(--gray-200);transition:all .3s;text-align:center}
+.benefit-card:hover{border-color:var(--gold);box-shadow:0 8px 30px rgba(11,29,58,.08);transform:translateY(-4px)}
+.benefit-card-icon{font-size:2.2rem;display:block;margin-bottom:14px}
+.benefit-card h4{font-size:.95rem;color:var(--navy);margin-bottom:8px;font-family:'Playfair Display',serif}
+.benefit-card p{font-size:.82rem;color:var(--gray-600);line-height:1.6}
+
+/* REFERRAL PROCESS */
+.referral-process{padding:60px 24px}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1000px;margin:40px auto 0;position:relative}
+.process-steps::before{content:'';position:absolute;top:35px;left:12.5%;right:12.5%;height:3px;background:linear-gradient(90deg,var(--gold),var(--navy),var(--gold));opacity:.3}
+.process-step{text-align:center;position:relative;z-index:1;padding:0 12px}
+.process-step-icon{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;box-shadow:0 4px 15px rgba(11,29,58,.2)}
+.process-step-num{position:absolute;top:-8px;right:calc(50% - 45px);background:var(--gold);color:var(--navy);width:24px;height:24px;border-radius:50%;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.process-step h4{font-size:.9rem;color:var(--navy);margin-bottom:6px}
+.process-step p{font-size:.78rem;color:var(--gray-600);line-height:1.5}
+
+/* CE RESOURCES */
+.ce-section{padding:60px 24px;background:var(--white)}
+.ce-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:40px auto 0}
+.ce-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:12px;padding:28px;transition:all .3s}
+.ce-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(11,29,58,.06);transform:translateY(-3px)}
+.ce-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.ce-type{background:rgba(201,169,110,.12);color:var(--gold);padding:4px 12px;border-radius:12px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.ce-credits{background:var(--navy);color:var(--white);padding:4px 12px;border-radius:12px;font-size:.7rem;font-weight:600}
+.ce-card h4{font-size:.95rem;color:var(--navy);margin-bottom:8px;font-family:'Playfair Display',serif}
+.ce-card p{font-size:.82rem;color:var(--gray-600);line-height:1.6;margin-bottom:12px}
+.ce-card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--gray-200)}
+.ce-date{font-size:.75rem;color:var(--gray-400);font-weight:500}
+.ce-register{background:none;border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:6px;font-size:.78rem;cursor:pointer;font-weight:600;transition:all .2s}
+.ce-register:hover{background:var(--gold);color:var(--navy)}
+
+/* B2C PATIENT HUB */
+.patient-hub{padding:80px 24px;background:var(--white)}
+.pathways-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:40px auto 0}
+.pathway-card{background:var(--gray-50);border:2px solid var(--gray-200);border-radius:16px;padding:32px 24px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.pathway-card:hover{border-color:var(--gold);box-shadow:0 12px 40px rgba(11,29,58,.08);transform:translateY(-5px)}
+.pathway-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.pathway-card:hover::before{transform:scaleX(1)}
+.pathway-icon{font-size:2.8rem;display:block;margin-bottom:16px}
+.pathway-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:8px;font-family:'Playfair Display',serif}
+.pathway-card>p{font-size:.82rem;color:var(--gray-600);line-height:1.6;margin-bottom:16px}
+.pathway-steps{text-align:left;margin-bottom:20px}
+.pathway-steps li{font-size:.78rem;color:var(--gray-600);padding:4px 0;padding-left:18px;position:relative;line-height:1.5}
+.pathway-steps li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:.72rem}
+.pathway-cta{background:var(--navy);color:var(--white);border:none;padding:10px 24px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%}
+.pathway-cta:hover{background:var(--gold);color:var(--navy)}
+
+/* INSURANCE CHECKER */
+.insurance-section{padding:60px 24px;background:var(--gray-50)}
+.insurance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:40px auto 0}
+.insurance-cat{background:var(--white);border-radius:12px;padding:28px;border:1px solid var(--gray-200)}
+.insurance-cat h4{font-size:.9rem;color:var(--navy);margin-bottom:14px;font-family:'Playfair Display',serif;display:flex;align-items:center;gap:8px}
+.insurance-cat h4::before{content:'🛡️';font-size:1.1rem}
+.plan-tag{display:inline-block;background:var(--gray-50);border:1px solid var(--gray-200);padding:5px 12px;border-radius:16px;font-size:.75rem;color:var(--gray-600);margin:3px 2px;transition:all .2s}
+.plan-tag:hover{border-color:var(--gold);color:var(--navy);background:rgba(201,169,110,.08)}
+.insurance-cta{text-align:center;margin-top:30px;padding:24px;background:linear-gradient(135deg,rgba(11,29,58,.03),rgba(201,169,110,.06));border-radius:12px;border:1px dashed var(--gold)}
+.insurance-cta p{font-size:.85rem;color:var(--gray-600);margin-bottom:12px}
+.insurance-cta .btn-primary{font-size:.85rem;padding:10px 24px}
+
+/* FINANCING HUB */
+.financing-hub{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:30px auto 0}
+.financing-card{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;padding:24px;text-align:center;transition:all .3s}
+.financing-card:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(11,29,58,.06)}
+.financing-card-icon{font-size:2rem;margin-bottom:10px;display:block}
+.financing-card h4{font-size:.88rem;color:var(--navy);margin-bottom:8px}
+.financing-card p{font-size:.78rem;color:var(--gray-600);line-height:1.5}
+
+/* AUDIENCE TOGGLE */
+.audience-toggle{display:flex;justify-content:center;margin-bottom:10px}
+.toggle-wrapper{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:3px}
+.toggle-btn{padding:8px 22px;border:none;border-radius:28px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .3s;background:transparent;color:rgba(255,255,255,.6)}
+.toggle-btn.active{background:var(--gold);color:var(--navy);box-shadow:0 2px 10px rgba(201,169,110,.3)}
+.nav-audience-toggle{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:2px;margin-left:8px}
+.nav-toggle-btn{padding:5px 14px;border:none;border-radius:18px;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,.5)}
+.nav-toggle-btn.active{background:var(--gold);color:var(--navy)}
+.nav-scrolled .nav-audience-toggle{background:rgba(11,29,58,.06);border-color:rgba(11,29,58,.1)}
+.nav-scrolled .nav-toggle-btn{color:var(--gray-400)}
+.nav-scrolled .nav-toggle-btn.active{background:var(--gold);color:var(--navy)}
+
 /* RESPONSIVE */
 @media(max-width:1024px){
   .services-grid{grid-template-columns:repeat(3,1fr)}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .benefit-cards{grid-template-columns:repeat(2,1fr)}
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .ce-grid{grid-template-columns:repeat(2,1fr)}
+  .pathways-grid{grid-template-columns:repeat(2,1fr)}
+  .financing-hub{grid-template-columns:repeat(2,1fr)}
+  .b2b-stats{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   .nav-links{display:none}
@@ -1031,6 +1198,16 @@ a{text-decoration:none;color:inherit}
   .trust-row{gap:20px}
   .a11y-toggle{top:auto;bottom:100px;right:24px}
   .a11y-panel{top:auto;bottom:148px;right:24px}
+  .b2b-hero-grid{grid-template-columns:1fr}
+  .b2b-stats{grid-template-columns:repeat(2,1fr)}
+  .benefits-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:30px}
+  .process-steps::before{display:none}
+  .ce-grid{grid-template-columns:1fr}
+  .pathways-grid{grid-template-columns:1fr}
+  .insurance-grid{grid-template-columns:1fr}
+  .financing-hub{grid-template-columns:1fr}
+  .nav-audience-toggle{display:none}
 }
 @media(max-width:480px){
   .services-grid{grid-template-columns:1fr}
@@ -1040,5 +1217,7 @@ a{text-decoration:none;color:inherit}
   .footer-grid{grid-template-columns:1fr}
   .section{padding:60px 16px}
   .calc-options{grid-template-columns:1fr 1fr}
+  .b2b-stats{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
 }
 `;
